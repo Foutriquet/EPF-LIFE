@@ -9,6 +9,6 @@ package epf.life;
  *
  * @author Utilisateur
  */
-public class DailyEvent {
+public class ListeEvent {
     
 }

@@ -1,9 +1,9 @@
 package epf.life;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Projet Programmation - EPF LIFE
+ * A.SYLARD / N.TROUILLET / M.PHELIP / M.GOMBAULT
+ * Classe Jauge
  */
 
 /**
@@ -13,42 +13,53 @@ package epf.life;
 public class Jauge {
    
     
-// Attributs --------------------------------------
+// ----------------------------- ATTRIBUTS ------------------------------------
     
     
-    private int Valeur;
-    private int ValeurMax;
-    private String Nom;
+    private int Valeur; //Valeur actuelle de la jauge
+    
+    private int ValeurMax = 100; //Valeur max de la jauge à ne pas dépasser
+    
+    private String Nom; //Nom de la jauge (Vie, Sociabilite, Education)
+    
+    private int Multiplicateur; //Difficulté choisie par le joueur
     
     
-// --------------------------------------
+// ---------------------------- CONSTRUCTEUR -----------------------------------
     
     
     
-    Jauge(int valeur, int valeurmax, String nom) {
+    Jauge(int valeur, String nom, int multiplicateur) {
         this.Valeur = valeur;
-        this.ValeurMax = valeurmax;
         this.Nom = nom;
+        this.Multiplicateur = multiplicateur;
         
     }
     
-    public int LireValeur() {
+// -------------------- METHODE RECUPERATION ATTRIBUTS -------------------------
+
+    
+    public int LireValeur() { //On récupère la valeur de la jauge
         return Valeur;
     }
     
-    public int LireValeurMax() {
-        return ValeurMax;
-    }
-    
-    public String LireNom() {
+    public String LireNom() { //On récupère le nom de la jauge
         return Nom;
     }
     
-    public void affecterValeur(int valeurAajouter) {
-        Valeur += valeurAajouter;
+    public String LireMultiplicateur() { //On récupère la difficulté
+        return Nom;
+    }
+
+// -------------------- METHODE ACTION -------------------------
+
+    
+    public void affecterValeur(int valeurAajouter) { //Ajout ou retrait d'une valeur de la jauge
         
-        if(Valeur>100) {
-            Valeur = 100;
+        Valeur = Valeur+(Multiplicateur*valeurAajouter); //On ajoute la valeur à la jauge en fonction de la difficulté
+        
+        if(Valeur>ValeurMax) { //On vérifie que la valeurMax n'est pas dépassée
+            Valeur = ValeurMax; //Si c'est le cas, on affecte la valeur max. 
         }
     }
     

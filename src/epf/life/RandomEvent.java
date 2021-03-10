@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Projet Programmation - EPF LIFE
+ * A.SYLARD / N.TROUILLET / M.PHELIP / M.GOMBAULT
+ * Classe Jauge
  */
 package epf.life;
 
