@@ -30,10 +30,10 @@ public class RandomEvent {
     
     
     public RandomEvent(String nom,String description, String nompersonnage) {
-        Nom=nom;
-        Description=description;
-        TableauDeChoix = new int[3][4];
-        NomPersonnage = nompersonnage;
+        this.Nom=nom;
+        this.Description=description;
+        this.TableauDeChoix = new int[3][4];
+        this.NomPersonnage = nompersonnage;
     }
     
     
