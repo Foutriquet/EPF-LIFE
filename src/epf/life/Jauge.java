@@ -29,7 +29,7 @@ public class Jauge {
     
     
     
-    Jauge(int valeur, String nom, int multiplicateur) {
+    public Jauge(int valeur, String nom, int multiplicateur) {
         this.Valeur = valeur;
         this.Nom = nom;
         this.Multiplicateur = multiplicateur;

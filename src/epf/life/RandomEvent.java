@@ -10,11 +10,24 @@ package epf.life;
  * @author Utilisateur
  */
 public class RandomEvent {
+
+       
     
-    private String Nom;
-    private String Description;
-    private int TableauDeChoix[][];
-    private String NomPersonnage;
+// ----------------------------- ATTRIBUTS ------------------------------------
+    
+    
+    private String Nom; //Nom de l'event - sa référence
+    
+    private String Description; //Description de l'event
+    
+    private int TableauDeChoix[][]; //Tableau des valeurs à ajouter/enlever en fonction de la jauge
+    
+    private String NomPersonnage; //Nom des personnages liés à l'Event
+           
+    
+// ---------------------------- CONSTRUCTEUR -----------------------------------
+    
+    
     
     public RandomEvent(String nom,String description, String nompersonnage) {
         Nom=nom;
@@ -23,7 +36,14 @@ public class RandomEvent {
         NomPersonnage = nompersonnage;
     }
     
-    public void initialiserTableauDeChoix(int jv1, int jv2, int jv3,int jv4, int js1, int js2, int js3, int js4, int je1, int je2, int je3, int je4) {
+    
+// -------------------- METHODE ACTION -------------------------
+
+    
+    public void initialiserTableauDeChoixRandom(int jv1, int jv2, int jv3,int jv4, int js1, int js2, int js3, int js4, int je1, int je2, int je3, int je4) {
+        
+        //Remplissage du tableau par les valeurs correspondantes 
+        
         TableauDeChoix[0][0]=jv1;
         TableauDeChoix[0][1]=jv2;
         TableauDeChoix[0][2]=jv3;
@@ -37,20 +57,24 @@ public class RandomEvent {
         TableauDeChoix[2][2]=je3;
         TableauDeChoix[2][3]=je4;
     }
+        
     
-    public String lireNom() {
+// -------------------- METHODE RECUPERATION ATTRIBUTS -------------------------
+
+    
+    public String lireNomRandom() { //On récupère le nom de l'Event
         return Nom;
     }
     
-    public String lireDescription() {
+    public String lireDescriptionRandom() { //On récupère sa description
         return Description;
     }
     
-    public int lireTableauDeChoix(int i, int j) {
+    public int lireTableauDeChoixRandom(int i, int j) { //On récupère le tableau des valeurs
         return TableauDeChoix[i][j];
     }
     
-    public String lireNomPersonnage() {
+    public String lireNomPersonnageRandom() { //On récupère le nom du personnage lié
         return NomPersonnage;
     }
 }
