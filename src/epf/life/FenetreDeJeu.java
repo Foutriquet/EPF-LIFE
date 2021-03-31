@@ -32,32 +32,49 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageDeFond = new javax.swing.JLabel();
+        JaugeEducation = new javax.swing.JLabel();
+        JaugeSociabilite = new javax.swing.JLabel();
+        JaugeSante = new javax.swing.JLabel();
         Jauges = new javax.swing.JLabel();
         Personnage = new javax.swing.JLabel();
         Evenement = new javax.swing.JPanel();
         NomEvent = new javax.swing.JLabel();
         DescriptionEvent = new javax.swing.JLabel();
-        Choix1 = new javax.swing.JButton();
-        Choix2 = new javax.swing.JButton();
-        Choix3 = new javax.swing.JButton();
-        Choix4 = new javax.swing.JButton();
         DescriptionChoix1 = new javax.swing.JLabel();
         DescriptionChoix2 = new javax.swing.JLabel();
         DescriptionChoix3 = new javax.swing.JLabel();
         DescriptionChoix4 = new javax.swing.JLabel();
+        Choix1 = new javax.swing.JButton();
+        Choix2 = new javax.swing.JButton();
+        Choix3 = new javax.swing.JButton();
+        Choix4 = new javax.swing.JButton();
+        ImageDeFond = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(ImageDeFond, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1800, 1000));
+
+        JaugeEducation.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        JaugeEducation.setText("100/100");
+        getContentPane().add(JaugeEducation, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 140, 50));
+
+        JaugeSociabilite.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        JaugeSociabilite.setText("100/100");
+        getContentPane().add(JaugeSociabilite, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 140, 50));
+
+        JaugeSante.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        JaugeSante.setText("100/100");
+        getContentPane().add(JaugeSante, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 80, 150, 50));
 
         Jauges.setBackground(new java.awt.Color(255, 255, 255));
         Jauges.setForeground(new java.awt.Color(255, 255, 255));
+        Jauges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jauge.jpg"))); // NOI18N
         Jauges.setText("jLabel2");
-        getContentPane().add(Jauges, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1310, 190));
+        Jauges.setPreferredSize(new java.awt.Dimension(1390, 192));
+        getContentPane().add(Jauges, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1390, 192));
 
+        Personnage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Jousset.jpg"))); // NOI18N
         Personnage.setText("jLabel1");
-        getContentPane().add(Personnage, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 230, 440, 760));
+        getContentPane().add(Personnage, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 250, 500, 700));
 
         Evenement.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -68,6 +85,18 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         DescriptionEvent.setBackground(new java.awt.Color(0, 0, 0));
         DescriptionEvent.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         DescriptionEvent.setText("Description Event");
+
+        DescriptionChoix1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix1.setText("DescriptionChoix1");
+
+        DescriptionChoix2.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix2.setText("DescriptionChoix2");
+
+        DescriptionChoix3.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix3.setText("DescriptionChoix3");
+
+        DescriptionChoix4.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix4.setText("DescriptionChoix4");
 
         Choix1.setText("Choix1");
         Choix1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,18 +125,6 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 Choix4ActionPerformed(evt);
             }
         });
-
-        DescriptionChoix1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix1.setText("DescriptionChoix1");
-
-        DescriptionChoix2.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix2.setText("DescriptionChoix2");
-
-        DescriptionChoix3.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix3.setText("DescriptionChoix3");
-
-        DescriptionChoix4.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix4.setText("DescriptionChoix4");
 
         javax.swing.GroupLayout EvenementLayout = new javax.swing.GroupLayout(Evenement);
         Evenement.setLayout(EvenementLayout);
@@ -222,6 +239,9 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         getContentPane().add(Evenement, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 1190, 560));
 
+        ImageDeFond.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Campus.jpg"))); // NOI18N
+        getContentPane().add(ImageDeFond, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1800, 1000));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -288,6 +308,9 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel DescriptionEvent;
     private javax.swing.JPanel Evenement;
     private javax.swing.JLabel ImageDeFond;
+    private javax.swing.JLabel JaugeEducation;
+    private javax.swing.JLabel JaugeSante;
+    private javax.swing.JLabel JaugeSociabilite;
     private javax.swing.JLabel Jauges;
     private javax.swing.JLabel NomEvent;
     private javax.swing.JLabel Personnage;
