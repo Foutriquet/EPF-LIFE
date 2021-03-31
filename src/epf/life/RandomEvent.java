@@ -23,6 +23,8 @@ public class RandomEvent {
     private int TableauDeChoix[][]; //Tableau des valeurs à ajouter/enlever en fonction de la jauge
     
     private String NomPersonnage; //Nom des personnages liés à l'Event
+    
+    private String TableauPhrases[];
            
     
 // ---------------------------- CONSTRUCTEUR -----------------------------------
@@ -34,6 +36,7 @@ public class RandomEvent {
         this.Description=description;
         this.TableauDeChoix = new int[3][4];
         this.NomPersonnage = nompersonnage;
+        this.TableauPhrases = new String[4];
     }
     
     
@@ -56,6 +59,12 @@ public class RandomEvent {
         TableauDeChoix[2][1]=je2;
         TableauDeChoix[2][2]=je3;
         TableauDeChoix[2][3]=je4;
+    }
+    public void initialiserTableauPhrases(String p1, String p2, String p3, String p4) {
+        TableauPhrases[0]=p1;
+        TableauPhrases[1]=p1;
+        TableauPhrases[2]=p1;
+        TableauPhrases[3]=p4;
     }
         
     

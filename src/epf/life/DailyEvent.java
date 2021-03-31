@@ -22,6 +22,8 @@ public class DailyEvent {
     private int TableauDeChoix[][]; //Tableau des valeurs à ajouter/enlever en fonction de la jauge
     
     private String NomPersonnage ; //Nom des personnages liés à l'Event
+    
+    private String TableauPhrases[];
 
             
     
@@ -36,6 +38,7 @@ public class DailyEvent {
         this.Description = description;
         this.NomPersonnage = nompersonnage;
         this.TableauDeChoix = new int [2][3];
+        this.TableauPhrases = new String[4];
     }
 
         
@@ -64,7 +67,7 @@ public class DailyEvent {
 
    
     
-       public void initialiserTableauDeChoixDaily(int jv1, int jv2, int jv3,int jv4, int js1, int js2, int js3, int js4, int je1, int je2, int je3, int je4) {
+    public void initialiserTableauDeChoixDaily(int jv1, int jv2, int jv3,int jv4, int js1, int js2, int js3, int js4, int je1, int je2, int je3, int je4) {
            
         //Remplissage du tableau par les valeurs correspondantes 
            
@@ -80,5 +83,11 @@ public class DailyEvent {
         TableauDeChoix[2][1]=je2;
         TableauDeChoix[2][2]=je3;
         TableauDeChoix[2][3]=je4;
+    }
+    public void initialiserTableauPhrases(String p1, String p2, String p3, String p4) {
+        TableauPhrases[0]=p1;
+        TableauPhrases[1]=p1;
+        TableauPhrases[2]=p1;
+        TableauPhrases[3]=p4;
     }
 }
