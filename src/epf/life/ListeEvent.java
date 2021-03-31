@@ -30,8 +30,10 @@ public class ListeEvent {
         ListeEventMatinRandom = new RandomEvent[2];
         ListeEventMatinRandom[0] = new RandomEvent("Maladie","Et moi qui pensais qu’une bonne journée t’attendait… Tu t’es réveillé malade ! Que faire ?","X");
         ListeEventMatinRandom[0].initialiserTableauDeChoixRandom(0, -20, -10, 0, 0, 0, 0, 0, -20, 20, 10, 0);
+        ListeEventMatinRandom[0].initialiserTableauPhrases("Pas le choix, direction le médecin !","Je peux pas rater les cours, tant pis si je me sens mal…","3.	J’essaye de bosser à la maison","null");
         ListeEventMatinRandom[1] = new RandomEvent("Tram en panne","Et mince, une panne générale sur le réseau de Tram. Tu vas rater les cours si tu trouves pas une solution rapidement !","X");
         ListeEventMatinRandom[1].initialiserTableauDeChoixRandom(-20, 0, 10, 0, 10, 10, -10, 0, 20, 0, -10, 0);
+        ListeEventMatinRandom[1].initialiserTableauPhrases("Je tape le sprint de ma vie.","J’y vais en marchant, tant pis si je suis en retard","Flemme, je rentre chez moi","null");
         
         ListeEventMidi = new DailyEvent[1];
         ListeEventMidi[0] = new DailyEvent("Midi","Le midi arrive ! Qu’ai-je le temps de faire en 45 min ?","X");
@@ -43,6 +45,7 @@ public class ListeEvent {
         ListeEventMidiRandom[0].initialiserTableauDeChoixRandom(-10, 10, -10, -20, -20, 10, 0, 20, 20, -20, -10, -20);
         ListeEventMidiRandom[1] = new RandomEvent("ExamenME","Jousset t’indique que Laugerette a préparé un examen de techno méca pour demain. Tu avais complètement oublié !","Jousset");
         ListeEventMidiRandom[1].initialiserTableauDeChoixRandom(-10, 10, 10, 0, -20, 10, 20, 0, 30, -20, -30, -10);
+        ListeEventMidiRandom[1].initialiserTableauPhrases("Je travaille à fond","Flemme de travailler, tant pis","Je préfère voir des potes, j’en ai besoin","Je fais le minimum de révision");
         
         ListeEventApresMidi = new DailyEvent[1];
         ListeEventApresMidi[0] = new DailyEvent("Après-midi","Les cours reprennent… Est-ce que j’ai vraiment envie d’y aller ?","X");
@@ -52,19 +55,26 @@ public class ListeEvent {
         ListeEventApresMidiRandom = new RandomEvent[2];
         ListeEventApresMidiRandom[0] = new RandomEvent("ExamenMA","Winston t’a préparé un partiel de maths abs sur la moitié du programme ! Pas question de rater ça quand même, si ?","Winston");
         ListeEventApresMidiRandom[0].initialiserTableauDeChoixRandom(-10, 10, 10, 0, -20, 10, 20, 0, 30, -20, -30, -10);
+        ListeEventApresMidiRandom[0].initialiserTableauPhrases("Je travaille à fond","Flemme de travailler, tant pis","Je préfère voir des potes, j’en ai besoin","Je fais le minimum de révision");
         ListeEventApresMidiRandom[1] = new RandomEvent("ExamenPH","Un examen de méca flotte pour la route ! Barandon ne rigole pas cette fois, révise bien le barrage !","Barandon");
         ListeEventApresMidiRandom[1].initialiserTableauDeChoixRandom(-10, 10, 10, 0, -20, 10, 20, 0, 30, -20, -30, -10);
+        ListeEventApresMidiRandom[1].initialiserTableauPhrases("Je travaille à fond","Flemme de travailler, tant pis","Je préfère voir des potes, j’en ai besoin","Je fais le minimum de révision");
         ListeEventApresMidiRandom[2] = new RandomEvent("Agressé dans la rue","Un malfrat t’approche avec un couteau et te menace ! Il veut ton portefeuille et ton téléphone ! Réagis vite !","Racaille");
         ListeEventApresMidiRandom[2].initialiserTableauDeChoixRandom(0, -10, -30, 0, -20, -10, 30, 0, 0, 0, 0, 0);
+        ListeEventApresMidiRandom[2].initialiserTableauPhrases("Je lui donne tout ce que j’ai sur moi","Je m’enfuis en tapant mon meilleur sprint","Je réplique. Ça va chauffer. ","null");
         
         ListeEventSoir = new DailyEvent[1];
         ListeEventSoir[0] = new DailyEvent("Soir","Le soleil commence à se coucher… Après une longue journée bien occupée, il est temps de…","X");
         ListeEventSoir[0].initialiserTableauDeChoixDaily(-10, 20, -10, 0, 0, 0, 10, 0, 20, 0, 0, 0);
         ListeEventSoir[0].initialiserTableauPhrases("Travailler tard, je suis en retard sur le programme !","Aller dormir, ça me fera du bien","Passer une soirée chill sur mon ordinateur","null");
         
-        ListeEventSoirRandom = new RandomEvent[1];
+        ListeEventSoirRandom = new RandomEvent[2];
         ListeEventSoirRandom[0] = new RandomEvent("Soirée","Une méga soirée vient d’être organisée par tous tes potes ce soir. Un programme bien chargé t’attends. Alors, tu fonces t’éclater ?","Pote");
         ListeEventSoirRandom[0].initialiserTableauDeChoixRandom(20, 0, -10, -20, -20, -20, 20, 40, 0, 20, 0, -20);
+        ListeEventSoirRandom[0].initialiserTableauPhrases("Non, j’ai besoin de dormir","Non, j’ai besoin de bosser","Oui, mais j’y vais en mode chill","Oui, et j’y vais à fond !");
+        ListeEventSoirRandom[1] = new RandomEvent("Ta copine te trompe","Tu viens d’apprendre que ta copine t’a trompé pendant une soirée auquel tu n’étais pas invité… Il est temps de prendre une réelle décision.","Copine");
+        ListeEventSoirRandom[1].initialiserTableauDeChoixRandom(-10, 10, -10, -20, -20, 10, 0, 20, 20, -20, -10, -10);
+        ListeEventSoirRandom[1].initialiserTableauPhrases("J’ai pas de copine !","Je me venge direct","Je laisse couler, mais que cette fois…","Je la quitte et je tourne la page");
         
         ListeEventWeekend = new DailyEvent[1];
         ListeEventWeekend[0] = new DailyEvent("Week-end","Enfin le Week-end ! Idéal pour rattraper le temps perdu ! Sur quoi est-ce que je devrai me concentrer ?","X");
