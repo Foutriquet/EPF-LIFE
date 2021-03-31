@@ -32,26 +32,214 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageDeFond = new javax.swing.JPanel();
+        ImageDeFond = new javax.swing.JLabel();
+        Jauges = new javax.swing.JLabel();
+        Personnage = new javax.swing.JLabel();
+        Evenement = new javax.swing.JPanel();
+        NomEvent = new javax.swing.JLabel();
+        DescriptionEvent = new javax.swing.JLabel();
+        Choix1 = new javax.swing.JButton();
+        Choix2 = new javax.swing.JButton();
+        Choix3 = new javax.swing.JButton();
+        Choix4 = new javax.swing.JButton();
+        DescriptionChoix1 = new javax.swing.JLabel();
+        DescriptionChoix2 = new javax.swing.JLabel();
+        DescriptionChoix3 = new javax.swing.JLabel();
+        DescriptionChoix4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(ImageDeFond, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1800, 1000));
 
-        javax.swing.GroupLayout ImageDeFondLayout = new javax.swing.GroupLayout(ImageDeFond);
-        ImageDeFond.setLayout(ImageDeFondLayout);
-        ImageDeFondLayout.setHorizontalGroup(
-            ImageDeFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1800, Short.MAX_VALUE)
+        Jauges.setBackground(new java.awt.Color(255, 255, 255));
+        Jauges.setForeground(new java.awt.Color(255, 255, 255));
+        Jauges.setText("jLabel2");
+        getContentPane().add(Jauges, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1310, 190));
+
+        Personnage.setText("jLabel1");
+        getContentPane().add(Personnage, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 230, 440, 760));
+
+        Evenement.setBackground(new java.awt.Color(255, 255, 255));
+
+        NomEvent.setBackground(new java.awt.Color(0, 0, 0));
+        NomEvent.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        NomEvent.setText("Titre Event");
+
+        DescriptionEvent.setBackground(new java.awt.Color(0, 0, 0));
+        DescriptionEvent.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        DescriptionEvent.setText("Description Event");
+
+        Choix1.setText("Choix1");
+        Choix1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Choix1ActionPerformed(evt);
+            }
+        });
+
+        Choix2.setText("Choix2");
+        Choix2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Choix2ActionPerformed(evt);
+            }
+        });
+
+        Choix3.setText("Choix3");
+        Choix3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Choix3ActionPerformed(evt);
+            }
+        });
+
+        Choix4.setText("Choix4");
+        Choix4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Choix4ActionPerformed(evt);
+            }
+        });
+
+        DescriptionChoix1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix1.setText("DescriptionChoix1");
+
+        DescriptionChoix2.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix2.setText("DescriptionChoix2");
+
+        DescriptionChoix3.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix3.setText("DescriptionChoix3");
+
+        DescriptionChoix4.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        DescriptionChoix4.setText("DescriptionChoix4");
+
+        javax.swing.GroupLayout EvenementLayout = new javax.swing.GroupLayout(Evenement);
+        Evenement.setLayout(EvenementLayout);
+        EvenementLayout.setHorizontalGroup(
+            EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1190, Short.MAX_VALUE)
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(300, Short.MAX_VALUE)
+                    .addComponent(NomEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(272, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(39, Short.MAX_VALUE)
+                    .addComponent(DescriptionEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(50, 50, 50)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(38, Short.MAX_VALUE)
+                    .addComponent(Choix1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(660, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(39, Short.MAX_VALUE)
+                    .addComponent(Choix2, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(659, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EvenementLayout.createSequentialGroup()
+                    .addGap(626, 626, 626)
+                    .addComponent(Choix3, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(72, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(627, Short.MAX_VALUE)
+                    .addComponent(Choix4, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(71, 71, 71)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(73, Short.MAX_VALUE)
+                    .addComponent(DescriptionChoix1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(692, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EvenementLayout.createSequentialGroup()
+                    .addGap(69, 69, 69)
+                    .addComponent(DescriptionChoix2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(696, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EvenementLayout.createSequentialGroup()
+                    .addGap(663, 663, 663)
+                    .addComponent(DescriptionChoix3, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(102, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EvenementLayout.createSequentialGroup()
+                    .addGap(665, 665, 665)
+                    .addComponent(DescriptionChoix4, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(100, Short.MAX_VALUE)))
         );
-        ImageDeFondLayout.setVerticalGroup(
-            ImageDeFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+        EvenementLayout.setVerticalGroup(
+            EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EvenementLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(NomEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(471, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EvenementLayout.createSequentialGroup()
+                    .addGap(111, 111, 111)
+                    .addComponent(DescriptionEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(303, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(286, Short.MAX_VALUE)
+                    .addComponent(Choix1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(151, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(426, Short.MAX_VALUE)
+                    .addComponent(Choix2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(286, Short.MAX_VALUE)
+                    .addComponent(Choix3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(151, 151, 151)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(426, Short.MAX_VALUE)
+                    .addComponent(Choix4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(311, Short.MAX_VALUE)
+                    .addComponent(DescriptionChoix1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(174, Short.MAX_VALUE)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(449, Short.MAX_VALUE)
+                    .addComponent(DescriptionChoix2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(36, 36, 36)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(310, Short.MAX_VALUE)
+                    .addComponent(DescriptionChoix3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(175, 175, 175)))
+            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
+                    .addContainerGap(449, Short.MAX_VALUE)
+                    .addComponent(DescriptionChoix4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(36, 36, 36)))
         );
 
-        getContentPane().add(ImageDeFond, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(Evenement, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 1190, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Choix1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Choix1ActionPerformed
+
+    private void Choix2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Choix2ActionPerformed
+
+    private void Choix3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Choix3ActionPerformed
+
+    private void Choix4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Choix4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +277,19 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ImageDeFond;
+    private javax.swing.JButton Choix1;
+    private javax.swing.JButton Choix2;
+    private javax.swing.JButton Choix3;
+    private javax.swing.JButton Choix4;
+    private javax.swing.JLabel DescriptionChoix1;
+    private javax.swing.JLabel DescriptionChoix2;
+    private javax.swing.JLabel DescriptionChoix3;
+    private javax.swing.JLabel DescriptionChoix4;
+    private javax.swing.JLabel DescriptionEvent;
+    private javax.swing.JPanel Evenement;
+    private javax.swing.JLabel ImageDeFond;
+    private javax.swing.JLabel Jauges;
+    private javax.swing.JLabel NomEvent;
+    private javax.swing.JLabel Personnage;
     // End of variables declaration//GEN-END:variables
 }
