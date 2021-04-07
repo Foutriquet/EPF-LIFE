@@ -17,7 +17,19 @@ public class FenetreDeJeu extends javax.swing.JFrame {
      * Creates new form FenetreDeJeu
      */
     public FenetreDeJeu() {
+        
         initComponents();
+        
+        //Affichage d'ambiance
+        
+        Regles.setVisible(true);
+        JaugeEducation.setVisible(false);
+        JaugeSociabilite.setVisible(false);
+        JaugeSante.setVisible(false);
+        Jauges.setVisible(false);
+        Personnage.setVisible(false);
+        Evenement.setVisible(false);
+        
         
         ImageIcon FondCode = new javax.swing.ImageIcon(getClass().getResource("/images/FondCode.jpg"));
         
@@ -32,6 +44,16 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Regles = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        bouton_demarrer = new javax.swing.JButton();
         JaugeEducation = new javax.swing.JLabel();
         JaugeSociabilite = new javax.swing.JLabel();
         JaugeSante = new javax.swing.JLabel();
@@ -52,6 +74,137 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Regles.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel1.setText("~ Règles du Jeu ~");
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel2.setText("Bienvenue sur EPF Life");
+
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel3.setText("Un jeu de Gestion, où le but est de survivre 1 semestre");
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel4.setText("- Faîtes des choix au cours de la journée, à travers des");
+
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel5.setText("évènements quotidiens et aléatoires");
+
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel6.setText("- Veillez à garder vos trois jauges équilibrées. Si l'une ");
+
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel7.setText("tombe à 0, c'est game over");
+
+        jLabel8.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel8.setText("- Survivez 1 semestre, et c'est gagné :)");
+
+        bouton_demarrer.setBackground(new java.awt.Color(204, 255, 204));
+        bouton_demarrer.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        bouton_demarrer.setText("Ok, j'ai compris ! Commençons ! ");
+        bouton_demarrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bouton_demarrerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ReglesLayout = new javax.swing.GroupLayout(Regles);
+        Regles.setLayout(ReglesLayout);
+        ReglesLayout.setHorizontalGroup(
+            ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReglesLayout.createSequentialGroup()
+                .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReglesLayout.createSequentialGroup()
+                        .addGap(292, 292, 292)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ReglesLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(bouton_demarrer, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(133, Short.MAX_VALUE))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(235, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(199, 199, 199)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(37, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(21, 21, 21)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(36, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(11, 11, 11)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(36, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(1, 1, 1)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(35, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(1, 1, 1)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(36, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(34, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(1, 1, 1)))
+        );
+        ReglesLayout.setVerticalGroup(
+            ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReglesLayout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addComponent(bouton_demarrer, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ReglesLayout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(552, Short.MAX_VALUE)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ReglesLayout.createSequentialGroup()
+                    .addGap(105, 105, 105)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(478, Short.MAX_VALUE)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
+                    .addContainerGap(243, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(329, 329, 329)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ReglesLayout.createSequentialGroup()
+                    .addGap(286, 286, 286)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(306, Short.MAX_VALUE)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ReglesLayout.createSequentialGroup()
+                    .addGap(334, 334, 334)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(238, Short.MAX_VALUE)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ReglesLayout.createSequentialGroup()
+                    .addGap(365, 365, 365)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(202, Short.MAX_VALUE)))
+            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ReglesLayout.createSequentialGroup()
+                    .addGap(421, 421, 421)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(140, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(Regles, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 860, 640));
 
         JaugeEducation.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         JaugeEducation.setText("100/100");
@@ -261,6 +414,20 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Choix4ActionPerformed
 
+    private void bouton_demarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_demarrerActionPerformed
+        // Affichage d'ambiance   
+        
+        Regles.setVisible(false);
+        JaugeEducation.setVisible(true);
+        JaugeSociabilite.setVisible(true);
+        JaugeSante.setVisible(true);
+        Jauges.setVisible(true);
+        Personnage.setVisible(true);
+        Evenement.setVisible(true);
+        
+        
+    }//GEN-LAST:event_bouton_demarrerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -314,5 +481,15 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel Jauges;
     private javax.swing.JLabel NomEvent;
     private javax.swing.JLabel Personnage;
+    private javax.swing.JPanel Regles;
+    private javax.swing.JButton bouton_demarrer;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
