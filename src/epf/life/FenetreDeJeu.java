@@ -508,7 +508,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Jauges.setPreferredSize(new java.awt.Dimension(1390, 192));
         getContentPane().add(Jauges, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1390, 192));
 
-        Personnage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Jousset2.png"))); // NOI18N
+        Personnage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Antoine.png"))); // NOI18N
         Personnage.setText("jLabel1");
         getContentPane().add(Personnage, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 250, 500, 700));
 
