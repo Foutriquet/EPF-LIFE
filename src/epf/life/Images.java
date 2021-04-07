@@ -15,14 +15,14 @@ import javax.swing.JLabel;
  */
 public class Images extends JLabel{
     
-    ImageIcon img_Antoine = new javax.swing.ImageIcon(getClass().getResource("/images/Antoine.jpg"));
-    ImageIcon img_Barrandon = new javax.swing.ImageIcon(getClass().getResource("/images/Barrandon.jpg"));
+    ImageIcon img_Antoine = new javax.swing.ImageIcon(getClass().getResource("/images/Antoine.png"));
+    ImageIcon img_Barrandon = new javax.swing.ImageIcon(getClass().getResource("/images/Barrandon.png"));
     ImageIcon img_Campus = new javax.swing.ImageIcon(getClass().getResource("/images/Campus.jpg"));
-    ImageIcon img_Copine = new javax.swing.ImageIcon(getClass().getResource("/images/Copine.jpg"));
-    ImageIcon img_Jousset = new javax.swing.ImageIcon(getClass().getResource("/images/Jousset.jpg"));
+    ImageIcon img_Copine = new javax.swing.ImageIcon(getClass().getResource("/images/Copine.png"));
+    ImageIcon img_Jousset = new javax.swing.ImageIcon(getClass().getResource("/images/Jousset.png"));
     ImageIcon img_Rue = new javax.swing.ImageIcon(getClass().getResource("/images/Rue.jpg"));
-    ImageIcon img_Voleur = new javax.swing.ImageIcon(getClass().getResource("/images/Voleur.jpg"));
-    ImageIcon img_Winston = new javax.swing.ImageIcon(getClass().getResource("/images/Winston.jpg"));
+    ImageIcon img_Voleur = new javax.swing.ImageIcon(getClass().getResource("/images/Voleur.png"));
+    ImageIcon img_Winston = new javax.swing.ImageIcon(getClass().getResource("/images/Winston.png"));
     ImageIcon img_Appartement = new javax.swing.ImageIcon(getClass().getResource("/images/appartement étudiant.jpg"));
     ImageIcon img_Foyer = new javax.swing.ImageIcon(getClass().getResource("/images/foyer.jpg"));
     ImageIcon img_Jauge = new javax.swing.ImageIcon(getClass().getResource("/images/jauge.jpg"));

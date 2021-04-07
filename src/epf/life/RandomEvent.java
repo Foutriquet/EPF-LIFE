@@ -79,11 +79,16 @@ public class RandomEvent {
         return Description;
     }
     
-    public int lireTableauDeChoixRandom(int i, int j) { //On récupère le tableau des valeurs
-        return TableauDeChoix[i][j];
+    public int lireTableauDeChoixRandom(int jauge, int choix) { //On récupère le tableau des valeurs
+        return TableauDeChoix[jauge][choix];
     }
     
     public String lireNomPersonnageRandom() { //On récupère le nom du personnage lié
         return NomPersonnage;
     }
+    
+    public String LireTableauDePhraseRandom(int choix) { //On récupère le tableau des valeurs
+        return TableauPhrases[choix];
+    }
+    
 }

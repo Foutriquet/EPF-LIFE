@@ -110,7 +110,7 @@ public class ListeEvent {
         return ListeEventSoir[num];
     }
     
-    public RandomEvent recupererSoirRandom(int num) {
+    public RandomEvent recupererEventSoirRandom(int num) {
         return ListeEventSoirRandom[num];
     }
     

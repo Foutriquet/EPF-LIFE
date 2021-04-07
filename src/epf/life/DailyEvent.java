@@ -37,7 +37,7 @@ public class DailyEvent {
         this.Nom = nom;
         this.Description = description;
         this.NomPersonnage = nompersonnage;
-        this.TableauDeChoix = new int [2][3];
+        this.TableauDeChoix = new int [3][4];
         this.TableauPhrases = new String[4];
     }
 
@@ -58,8 +58,12 @@ public class DailyEvent {
     public String LireNomPersonnageDaily() { //On récupère le nom du personnage lié
         return NomPersonnage;
     }
-    public int[][] LireTableauDeChoixDaily() { //On récupère le tableau des valeurs
-        return TableauDeChoix;
+    public int LireTableauDeChoixDaily(int jauge, int numeroDuChoix) { //On récupère le tableau des valeurs
+        return TableauDeChoix[jauge][numeroDuChoix];
+    }
+    
+    public String LireTableauDePhraseDaily(int choix) { //On récupère le tableau des valeurs
+        return TableauPhrases[choix];
     }
            
     

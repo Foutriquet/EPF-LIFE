@@ -16,20 +16,20 @@ public class Jauge {
 // ----------------------------- ATTRIBUTS ------------------------------------
     
     
-    private int Valeur; //Valeur actuelle de la jauge
+    private float Valeur; //Valeur actuelle de la jauge
     
-    private int ValeurMax = 100; //Valeur max de la jauge à ne pas dépasser
+    private float ValeurMax = 100; //Valeur max de la jauge à ne pas dépasser
     
-    private String Nom; //Nom de la jauge (Vie, Sociabilite, Education)
+    private String Nom; //Nom de la jauge (Sante, Sociabilite, Education)
     
-    private int Multiplicateur; //Difficulté choisie par le joueur
+    private float Multiplicateur; //Difficulté choisie par le joueur
     
     
 // ---------------------------- CONSTRUCTEUR -----------------------------------
     
     
     
-    public Jauge(int valeur, String nom, int multiplicateur) {
+    public Jauge(float valeur, String nom, float multiplicateur) {
         this.Valeur = valeur;
         this.Nom = nom;
         this.Multiplicateur = multiplicateur;
@@ -39,7 +39,7 @@ public class Jauge {
 // -------------------- METHODE RECUPERATION ATTRIBUTS -------------------------
 
     
-    public int LireValeur() { //On récupère la valeur de la jauge
+    public float LireValeur() { //On récupère la valeur de la jauge
         return Valeur;
     }
     
@@ -54,7 +54,7 @@ public class Jauge {
 // -------------------- METHODE ACTION -------------------------
 
     
-    public void affecterValeur(int valeurAajouter) { //Ajout ou retrait d'une valeur de la jauge
+    public void affecterValeur(float valeurAajouter) { //Ajout ou retrait d'une valeur de la jauge
         
         Valeur = Valeur+(Multiplicateur*valeurAajouter); //On ajoute la valeur à la jauge en fonction de la difficulté
         
