@@ -24,6 +24,8 @@ public class DailyEvent {
     private String NomPersonnage ; //Nom des personnages liés à l'Event
     
     private String TableauPhrases[];
+    
+    private String FondAssocie;
 
             
     
@@ -32,13 +34,14 @@ public class DailyEvent {
        
     
     
-    DailyEvent(String nom, String description,String nompersonnage) {
+    DailyEvent(String nom, String description,String nompersonnage, String fond) {
 
         this.Nom = nom;
         this.Description = description;
         this.NomPersonnage = nompersonnage;
         this.TableauDeChoix = new int [3][4];
         this.TableauPhrases = new String[4];
+        this.FondAssocie = fond;
     }
 
         
@@ -65,6 +68,10 @@ public class DailyEvent {
     public String LireTableauDePhraseDaily(int choix) { //On récupère le tableau des valeurs
         return TableauPhrases[choix];
     }
+    public String LireFondAssocieDaily() { //On récupère le nom du personnage lié
+        return FondAssocie;
+    }
+    
            
     
 // -------------------- METHODE ACTION -------------------------

@@ -6,6 +6,7 @@
 package epf.life;
 
 import java.awt.Graphics;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -13,8 +14,15 @@ import javax.swing.JLabel;
  *
  * @author Utilisateur
  */
-public class Images extends JLabel{
-    
+public class Images extends JLabel {
+
+    RandomEvent EventRandom;
+    DailyEvent EventDaily;
+    String EvenementCourant;
+    String NomPersonnage;
+    String FondDaily;
+    String FondRandom;
+
     ImageIcon img_Antoine = new javax.swing.ImageIcon(getClass().getResource("/images/Antoine.png"));
     ImageIcon img_Barrandon = new javax.swing.ImageIcon(getClass().getResource("/images/Barrandon.png"));
     ImageIcon img_Campus = new javax.swing.ImageIcon(getClass().getResource("/images/Campus.jpg"));
@@ -27,48 +35,108 @@ public class Images extends JLabel{
     ImageIcon img_Foyer = new javax.swing.ImageIcon(getClass().getResource("/images/foyer.jpg"));
     ImageIcon img_Jauge = new javax.swing.ImageIcon(getClass().getResource("/images/jauge.jpg"));
     ImageIcon img_Soirée = new javax.swing.ImageIcon(getClass().getResource("/images/soirée.jpg"));
-    
-    String Nom;
-    
-    public Images(String nom) {
-        Nom = nom;
+    ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/images/vide.png"));
+
+    //Constructeur pour un evenement daily et Random
+    public Images(RandomEvent evenement) {
+        FondRandom = evenement.LireFondAssocieRandom();
+        NomPersonnage = evenement.lireNomPersonnageRandom();
+        EvenementCourant = "Random";
     }
-    
-    public void modifierImage(String nom) {
-        Nom=nom;
+
+    public Images(DailyEvent evenement) {
+        FondDaily = evenement.LireFondAssocieDaily();
+        NomPersonnage = evenement.LireNomPersonnageDaily();
+        EvenementCourant = "Daily";
     }
-    
+
     @Override
     public void paintComponent(Graphics G) {//on crée la fonction paintComponent qui va permettre d'afficher la cellule
         super.paintComponent(G);
 
-        switch(Nom) {
+        switch (NomPersonnage) {
             case "Antoine":
                 setIcon(img_Antoine);
                 break;
+
             case "Barrandon":
                 setIcon(img_Barrandon);
-            case "Campus":
-                setIcon(img_Campus);
+                break;
+
             case "Copine":
                 setIcon(img_Copine);
+                break;
+
             case "Jousset":
                 setIcon(img_Jousset);
-            case "Rue":
-                setIcon(img_Rue);
+                break;
+
             case "Voleur":
-                    setIcon(img_Voleur);
-            case "Winstone":
+                setIcon(img_Voleur);
+                break;
+
+            case "Winston":
                 setIcon(img_Winston);
-            case "Appartement":
-                setIcon(img_Appartement);
-            case "Foyer":
-                setIcon(img_Foyer);
-            case "Jauge":
-                setIcon(img_Jauge);
-            case "Soirée":
-                setIcon(img_Soirée);
+                break;
+
+            case "X":
+                setIcon(img_vide);
+                break;
+
             default:
         }
+
+        if (EvenementCourant == "Daily") {
+
+            switch (FondDaily) {
+
+                case "campus":
+                    setIcon(img_Campus);
+                    break;
+
+                case "rue":
+                    setIcon(img_Rue);
+                    break;
+
+                case "chambre":
+                    setIcon(img_Appartement);
+                    break;
+
+                case "foyer":
+                    setIcon(img_Foyer);
+                    break;
+
+                case "soiree":
+                    setIcon(img_Soirée);
+                    break;
+
+            }
+        } else if (EvenementCourant == "Random") {
+
+            switch (FondRandom) {
+
+                case "campus":
+                    setIcon(img_Campus);
+                    break;
+
+                case "rue":
+                    setIcon(img_Rue);
+                    break;
+
+                case "chambre":
+                    setIcon(img_Appartement);
+                    break;
+
+                case "foyer":
+                    setIcon(img_Foyer);
+                    break;
+
+                case "soiree":
+                    setIcon(img_Soirée);
+                    break;
+
+            }
+        }
     }
+
 }

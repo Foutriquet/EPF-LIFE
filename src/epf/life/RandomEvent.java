@@ -25,18 +25,21 @@ public class RandomEvent {
     private String NomPersonnage; //Nom des personnages liés à l'Event
     
     private String TableauPhrases[];
+    
+    private String FondAssocie;
            
     
 // ---------------------------- CONSTRUCTEUR -----------------------------------
     
     
     
-    public RandomEvent(String nom,String description, String nompersonnage) {
+    public RandomEvent(String nom,String description, String nompersonnage, String fond) {
         this.Nom=nom;
         this.Description=description;
         this.TableauDeChoix = new int[3][4];
         this.NomPersonnage = nompersonnage;
         this.TableauPhrases = new String[4];
+        this.FondAssocie = fond;
     }
     
     
@@ -89,6 +92,10 @@ public class RandomEvent {
     
     public String LireTableauDePhraseRandom(int choix) { //On récupère le tableau des valeurs
         return TableauPhrases[choix];
+    }
+    
+    public String LireFondAssocieRandom() { //On récupère le nom du personnage lié
+        return FondAssocie;
     }
     
 }
