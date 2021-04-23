@@ -18,6 +18,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
      */
     private Jauge jaugeSante, jaugeSociabilite, jaugeEducation;
     private ListeEvent listeEvent;
+    
 
     public FenetreDeJeu() {
 
@@ -32,13 +33,20 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Personnage.setVisible(false);
         Evenement.setVisible(false);
 
-        ImageIcon FondCode = new javax.swing.ImageIcon(getClass().getResource("/images/FondCode.jpg"));
 
         ModifierAffichageJauge();
         
 
     }
 
+    
+    public void AjouterValeurJauges(int jaugevie, int jaugesociabilite, int jaugeeducation) {
+        jaugeSante.affecterValeur(jaugevie);
+        jaugeSociabilite.affecterValeur(jaugesociabilite);
+        jaugeEducation.affecterValeur(jaugeeducation);
+         
+    }
+    
     public void ModifierAffichageJauge() {
         JaugeEducationValeur.setText(jaugeEducation.LireValeur() + "/100");
         JaugeSanteValeur.setText(jaugeSante.LireValeur() + "/100");

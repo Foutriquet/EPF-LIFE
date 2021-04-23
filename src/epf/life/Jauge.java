@@ -54,9 +54,14 @@ public class Jauge {
 // -------------------- METHODE ACTION -------------------------
 
     
-    public void affecterValeur(float valeurAajouter) { //Ajout ou retrait d'une valeur de la jauge
+    public void affecterValeur(int valeurAajouter) { //Ajout ou retrait d'une valeur de la jauge
         
-        Valeur = Valeur+(Multiplicateur*valeurAajouter); //On ajoute la valeur à la jauge en fonction de la difficulté
+        if (valeurAajouter<0) {
+            Valeur = Valeur+ (Multiplicateur*((float)valeurAajouter));
+        } else {
+            Valeur = Valeur+((float)valeurAajouter);
+        }
+         //On ajoute la valeur à la jauge en fonction de la difficulté
         
         if(Valeur>ValeurMax) { //On vérifie que la valeurMax n'est pas dépassée
             Valeur = ValeurMax; //Si c'est le cas, on affecte la valeur max. 
