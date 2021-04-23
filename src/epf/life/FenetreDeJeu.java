@@ -5,6 +5,7 @@
  */
 package epf.life;
 
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 /**
@@ -17,8 +18,12 @@ public class FenetreDeJeu extends javax.swing.JFrame {
      * Creates new form FenetreDeJeu
      */
     private Jauge jaugeSante, jaugeSociabilite, jaugeEducation;
-    private ListeEvent listeEvent;
-    
+    private ListeEvent listeEvent = new ListeEvent();
+    private boolean condition = false;
+    private int choix;
+    private int jour = 0;
+    private int WE = 0;
+    private int moment = 0;
 
     public FenetreDeJeu() {
 
@@ -32,160 +37,365 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Jauges.setVisible(false);
         Personnage.setVisible(false);
         Evenement.setVisible(false);
-
-
-        ModifierAffichageJauge();
-        
+        debut.setVisible(false);
+        jLabel14.setVisible(false);
+        jLabel15.setVisible(false);
+        jLabel16.setVisible(false);
 
     }
+    
+
+
+    public void Jouer() {
+
+        if (moment == 0) {
+            //afficher fond appart
+
+            //Calcul aléatoire
+            Random random = new Random();
+
+            if (random.nextInt(100) < 30) {
+                int choixdeevent = random.nextInt(2);
+                if (choixdeevent == 0) {
+                    ModifierTexteEvenementRandom(choixdeevent, moment);
+
+                    int jaugevie = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
+                    int jaugesociabilite = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
+                    int jaugeeducation = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                
+
+                } else {
+
+                    //Daily
+                    ModifierTexteEvenementDaily(0, moment);
+
+                    int jaugevie = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(0, choix);
+                    int jaugesociabilite = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(1, choix);
+                    int jaugeeducation = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                  
+
+                    // Event
+                    ModifierTexteEvenementRandom(choixdeevent, moment);
+
+                    int jaugevie1 = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
+                    int jaugesociabilite1 = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
+                    int jaugeeducation1 = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
+                  
+
+                }
+
+            } else {
+                ModifierTexteEvenementDaily(0, moment);
+
+                int jaugevie = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(0, choix);
+                int jaugesociabilite = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(1, choix);
+                int jaugeeducation = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(2, choix);
+                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+               
+            }
+        }
+
+        //Fin moment 0
+        
+
+        // jour modulo 5 = 0
+        //Fin matin
+        if (moment == 1) {
+            //afficher fond appart
+
+            //Calcul aléatoire
+            Random random = new Random();
+
+            if (random.nextInt(100) < 30) {
+                int choixdeevent = random.nextInt(2);
+
+                ModifierTexteEvenementDaily(0, moment);
+
+                int jaugevie = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(0, choix);
+                int jaugesociabilite = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(1, choix);
+                int jaugeeducation = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(2, choix);
+                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+            
+
+                // Event random
+                ModifierTexteEvenementRandom(choixdeevent, moment);
+
+                int jaugevie1 = listeEvent.recupererEventMidiRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
+                int jaugesociabilite1 = listeEvent.recupererEventMidiRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
+                int jaugeeducation1 = listeEvent.recupererEventMidiRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
+                AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
+            
+
+            } else {
+                ModifierTexteEvenementDaily(0, moment);
+
+                int jaugevie = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(0, choix);
+                int jaugesociabilite = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(1, choix);
+                int jaugeeducation = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(2, choix);
+                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+              
+            }
+        }
+
+        if (moment == 2) {
+            //afficher fond appart
+
+            //Calcul aléatoire
+            Random random = new Random();
+
+            if (random.nextInt(100) < 30) {
+                int choixdeevent = random.nextInt(3);
+
+                ModifierTexteEvenementDaily(0, moment);
+
+                int jaugevie = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(0, choix);
+                int jaugesociabilite = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(1, choix);
+                int jaugeeducation = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(2, choix);
+                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                
+
+                // Event random
+                ModifierTexteEvenementRandom(choixdeevent, moment);
+
+                int jaugevie1 = listeEvent.recupererEventApresMidiRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
+                int jaugesociabilite1 = listeEvent.recupererEventApresMidiRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
+                int jaugeeducation1 = listeEvent.recupererEventApresMidiRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
+                AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
+
+            } else {
+                ModifierTexteEvenementDaily(0, moment);
+
+                int jaugevie = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(0, choix);
+                int jaugesociabilite = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(1, choix);
+                int jaugeeducation = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(2, choix);
+                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+            }
+        }
+        if (moment == 3) {
+            //afficher fond appart
+
+            //Calcul aléatoire
+            Random random = new Random();
+
+            if (random.nextInt(100) < 30) {
+                int choixdeevent = random.nextInt(2);
+                if (choixdeevent == 0) {
+                    ModifierTexteEvenementRandom(choixdeevent, moment);
+
+                    int jaugevie = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
+                    int jaugesociabilite = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
+                    int jaugeeducation = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+
+                } else {
+
+                    // Event Random 
+                    ModifierTexteEvenementRandom(choixdeevent, moment);
+
+                    int jaugevie1 = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
+                    int jaugesociabilite1 = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
+                    int jaugeeducation1 = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
+
+                    //Daily
+                    ModifierTexteEvenementDaily(0, moment);
+
+                    int jaugevie = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(0, choix);
+                    int jaugesociabilite = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(1, choix);
+                    int jaugeeducation = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+
+                }
+
+            } else {
+                ModifierTexteEvenementDaily(0, moment);
+
+                int jaugevie = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(0, choix);
+                int jaugesociabilite = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(1, choix);
+                int jaugeeducation = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(2, choix);
+                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+            }
+        }
+        
+        moment ++;
+        
+        if (moment == 4) {
+            moment = 0;
+            jour++;
+        }
+        
+    }
+
+
 
     
+
     public void AjouterValeurJauges(int jaugevie, int jaugesociabilite, int jaugeeducation) {
         jaugeSante.affecterValeur(jaugevie);
         jaugeSociabilite.affecterValeur(jaugesociabilite);
         jaugeEducation.affecterValeur(jaugeeducation);
-         
+
     }
-    
+
     public void ModifierAffichageJauge() {
         JaugeEducationValeur.setText(jaugeEducation.LireValeur() + "/100");
         JaugeSanteValeur.setText(jaugeSante.LireValeur() + "/100");
         JaugeSociabiliteValeur.setText(jaugeSociabilite.LireValeur() + "/100");
     }
-    
+
     public void ModifierTexteEvenementDaily(int numeroEvenement, int moment) {
-        switch(moment) {
+        switch (moment) {
             case 0:
                 DescriptionEvent.setText(listeEvent.recupererEventMatin(numeroEvenement).LireDescriptionDaily());
                 NomEvent.setText(listeEvent.recupererEventMatin(numeroEvenement).LireNomDaily());
-                DescriptionChoix1.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(2));
-                
+                Choix1.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(0));
+                Choix2.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(1));
+                Choix3.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(2));
+
                 if (listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(3));
                 }
-                
+
                 break;
-                
+
             case 1:
                 DescriptionEvent.setText(listeEvent.recupererEventMidi(numeroEvenement).LireDescriptionDaily());
                 NomEvent.setText(listeEvent.recupererEventMidi(numeroEvenement).LireNomDaily());
-                DescriptionChoix1.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(2));
-                
+                Choix1.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(0));
+                Choix2.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(1));
+                Choix3.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(2));
+
                 if (listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(3));
                 }
-                
+
                 break;
             case 2:
                 DescriptionEvent.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireDescriptionDaily());
                 NomEvent.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireNomDaily());
-                DescriptionChoix1.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(2));
-                
+                Choix1.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(0));
+                Choix2.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(1));
+                Choix3.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(2));
+
                 if (listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(3));
                 }
-                
+
                 break;
             case 3:
                 DescriptionEvent.setText(listeEvent.recupererEventSoir(numeroEvenement).LireDescriptionDaily());
                 NomEvent.setText(listeEvent.recupererEventSoir(numeroEvenement).LireNomDaily());
-                DescriptionChoix1.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(2));
-                
+                Choix1.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(0));
+                Choix2.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(1));
+                Choix3.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(2));
+
                 if (listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(3));
                 }
-                
+
                 break;
             case 4:
                 DescriptionEvent.setText(listeEvent.recupererWeekend(numeroEvenement).LireDescriptionDaily());
                 NomEvent.setText(listeEvent.recupererWeekend(numeroEvenement).LireNomDaily());
-                DescriptionChoix1.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(0));
-                DescriptionChoix2.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(1));
-                DescriptionChoix3.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(2));
-                
+                Choix1.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(0));
+                Choix2.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(1));
+                Choix3.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(2));
+
                 if (listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(3));
                 }
-                
+
                 break;
             default:
         }
-        
+
     }
-    
+
     public void ModifierTexteEvenementRandom(int numeroEvenement, int moment) {
-        switch(moment) {
+        switch (moment) {
             case 0:
                 DescriptionEvent.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).lireDescriptionRandom());
                 NomEvent.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).lireNomRandom());
-                DescriptionChoix1.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(2));
-                
+                Choix1.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(0));
+                Choix2.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(1));
+                Choix3.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(2));
+
                 if (listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(3));
                 }
-                
+
                 break;
-                
+
             case 1:
                 DescriptionEvent.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).lireDescriptionRandom());
                 NomEvent.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).lireNomRandom());
-                DescriptionChoix1.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(2));
-                
+                Choix1.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(0));
+                Choix2.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(1));
+                Choix3.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(2));
+
                 if (listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3));
                 }
-                
+
                 break;
             case 2:
                 DescriptionEvent.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).lireDescriptionRandom());
                 NomEvent.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).lireNomRandom());
-                DescriptionChoix1.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(2));
-                
+                Choix1.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(0));
+                Choix2.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(1));
+                Choix3.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(2));
+
                 if (listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3));
                 }
-                
+
                 break;
             case 3:
                 DescriptionEvent.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).lireDescriptionRandom());
                 NomEvent.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).lireNomRandom());
-                DescriptionChoix1.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(0));
-                DescriptionChoix2.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(1));
-                DescriptionChoix3.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(2));
-                
+                Choix1.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(0));
+                Choix2.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(1));
+                Choix3.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(2));
+
                 if (listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
-                    
-                DescriptionChoix4.setText("");
+
+                    Choix4.setText("");
+                } else {
+                    Choix4.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(3));
                 }
-                
+
                 break;
             default:
         }
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -196,15 +406,6 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        debut = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        diff_facile = new javax.swing.JButton();
-        diff_moyen = new javax.swing.JButton();
-        diff_moyen1 = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
         Regles = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -215,6 +416,18 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         bouton_demarrer = new javax.swing.JButton();
+        debut = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        diff_facile = new javax.swing.JButton();
+        diff_moyen = new javax.swing.JButton();
+        diff_moyen1 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         JaugeEducationValeur = new javax.swing.JLabel();
         JaugeSociabiliteValeur = new javax.swing.JLabel();
         JaugeSanteValeur = new javax.swing.JLabel();
@@ -223,10 +436,6 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Evenement = new javax.swing.JPanel();
         NomEvent = new javax.swing.JLabel();
         DescriptionEvent = new javax.swing.JLabel();
-        DescriptionChoix1 = new javax.swing.JLabel();
-        DescriptionChoix2 = new javax.swing.JLabel();
-        DescriptionChoix3 = new javax.swing.JLabel();
-        DescriptionChoix4 = new javax.swing.JLabel();
         Choix1 = new javax.swing.JButton();
         Choix2 = new javax.swing.JButton();
         Choix3 = new javax.swing.JButton();
@@ -235,136 +444,6 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        debut.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel9.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
-        jLabel9.setText("Situation...");
-
-        jLabel10.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
-        jLabel10.setText("Tu es un(e) élève de l'EPF. Tu commences ta 2e année avec beaucoup de motivation");
-
-        jLabel11.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
-        jLabel11.setText("Mais l'année va être difficile. Il ne va pas falloir relâcher tes efforts !");
-
-        jLabel12.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
-        jLabel12.setText("Commençons par choisir un niveau de difficulté...");
-
-        diff_facile.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        diff_facile.setText("Facile");
-        diff_facile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                diff_facileActionPerformed(evt);
-            }
-        });
-
-        diff_moyen.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        diff_moyen.setText("Moyen");
-        diff_moyen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                diff_moyenActionPerformed(evt);
-            }
-        });
-
-        diff_moyen1.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        diff_moyen1.setText("Difficile");
-        diff_moyen1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                diff_moyen1ActionPerformed(evt);
-            }
-        });
-
-        jLabel13.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
-        jLabel13.setText("C'est le début de l'Aventure. Tu t'apprêtes à te réveiller, c'est le jour de la rentrée. ");
-
-        javax.swing.GroupLayout debutLayout = new javax.swing.GroupLayout(debut);
-        debut.setLayout(debutLayout);
-        debutLayout.setHorizontalGroup(
-            debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(debutLayout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(diff_facile, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(868, Short.MAX_VALUE))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(debutLayout.createSequentialGroup()
-                    .addGap(556, 556, 556)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(503, Short.MAX_VALUE)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                    .addContainerGap(49, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 1214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                    .addContainerGap(52, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(17, 17, 17)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                    .addContainerGap(49, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(514, 514, 514)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(debutLayout.createSequentialGroup()
-                    .addGap(516, 516, 516)
-                    .addComponent(diff_moyen, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(474, Short.MAX_VALUE)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                    .addContainerGap(907, Short.MAX_VALUE)
-                    .addComponent(diff_moyen1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(82, 82, 82)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(debutLayout.createSequentialGroup()
-                    .addGap(51, 51, 51)
-                    .addComponent(jLabel13)
-                    .addContainerGap(39, Short.MAX_VALUE)))
-        );
-        debutLayout.setVerticalGroup(
-            debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                .addContainerGap(434, Short.MAX_VALUE)
-                .addComponent(diff_facile, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(299, 299, 299))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(debutLayout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(680, Short.MAX_VALUE)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(debutLayout.createSequentialGroup()
-                    .addGap(165, 165, 165)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(566, Short.MAX_VALUE)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(debutLayout.createSequentialGroup()
-                    .addGap(223, 223, 223)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(514, Short.MAX_VALUE)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(debutLayout.createSequentialGroup()
-                    .addGap(356, 356, 356)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(373, Short.MAX_VALUE)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                    .addContainerGap(433, Short.MAX_VALUE)
-                    .addComponent(diff_moyen, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(300, 300, 300)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                    .addContainerGap(433, Short.MAX_VALUE)
-                    .addComponent(diff_moyen1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(301, 301, 301)))
-            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
-                    .addContainerGap(275, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(463, 463, 463)))
-        );
-
-        getContentPane().add(debut, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 1290, 790));
 
         Regles.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -495,19 +574,161 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                     .addContainerGap(140, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(Regles, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 860, 640));
+        getContentPane().add(Regles, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
+
+        debut.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel9.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel9.setText("Situation...");
+
+        jLabel10.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel10.setText("Tu es un(e) élève de l'EPF. Tu commences ta 2e année avec beaucoup de motivation");
+
+        jLabel11.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel11.setText("Mais l'année va être difficile. Il ne va pas falloir relâcher tes efforts !");
+
+        jLabel12.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel12.setText("Commençons par choisir un niveau de difficulté...");
+
+        diff_facile.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        diff_facile.setText("Facile");
+        diff_facile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diff_facileActionPerformed(evt);
+            }
+        });
+
+        diff_moyen.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        diff_moyen.setText("Moyen");
+        diff_moyen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diff_moyenActionPerformed(evt);
+            }
+        });
+
+        diff_moyen1.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        diff_moyen1.setText("Difficile");
+        diff_moyen1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diff_moyen1ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel13.setText("C'est le début de l'Aventure. Tu t'apprêtes à te réveiller, c'est le jour de la rentrée. ");
+
+        javax.swing.GroupLayout debutLayout = new javax.swing.GroupLayout(debut);
+        debut.setLayout(debutLayout);
+        debutLayout.setHorizontalGroup(
+            debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(debutLayout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(diff_facile, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(908, Short.MAX_VALUE))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(debutLayout.createSequentialGroup()
+                    .addGap(556, 556, 556)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(543, Short.MAX_VALUE)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
+                    .addContainerGap(89, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 1214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(27, 27, 27)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
+                    .addContainerGap(92, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(17, 17, 17)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
+                    .addContainerGap(89, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(514, 514, 514)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(debutLayout.createSequentialGroup()
+                    .addGap(516, 516, 516)
+                    .addComponent(diff_moyen, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(514, Short.MAX_VALUE)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
+                    .addContainerGap(947, Short.MAX_VALUE)
+                    .addComponent(diff_moyen1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(82, 82, 82)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(debutLayout.createSequentialGroup()
+                    .addGap(51, 51, 51)
+                    .addComponent(jLabel13)
+                    .addContainerGap(79, Short.MAX_VALUE)))
+        );
+        debutLayout.setVerticalGroup(
+            debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(debutLayout.createSequentialGroup()
+                .addContainerGap(434, Short.MAX_VALUE)
+                .addComponent(diff_facile, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(299, 299, 299))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(debutLayout.createSequentialGroup()
+                    .addGap(40, 40, 40)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(680, Short.MAX_VALUE)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(debutLayout.createSequentialGroup()
+                    .addGap(165, 165, 165)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(566, Short.MAX_VALUE)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(debutLayout.createSequentialGroup()
+                    .addGap(223, 223, 223)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(514, Short.MAX_VALUE)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(debutLayout.createSequentialGroup()
+                    .addGap(356, 356, 356)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(373, Short.MAX_VALUE)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
+                    .addContainerGap(433, Short.MAX_VALUE)
+                    .addComponent(diff_moyen, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(300, 300, 300)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
+                    .addContainerGap(433, Short.MAX_VALUE)
+                    .addComponent(diff_moyen1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(301, 301, 301)))
+            .addGroup(debutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debutLayout.createSequentialGroup()
+                    .addContainerGap(275, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(463, 463, 463)))
+        );
+
+        getContentPane().add(debut, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 1330, 790));
+
+        jLabel14.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel14.setText("Santé");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 50, 210, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel15.setText("Education");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 210, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel16.setText("Sociabilite");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 210, -1));
 
         JaugeEducationValeur.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         JaugeEducationValeur.setText("100/100");
-        getContentPane().add(JaugeEducationValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 140, 50));
+        getContentPane().add(JaugeEducationValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 170, 50));
 
         JaugeSociabiliteValeur.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         JaugeSociabiliteValeur.setText("100/100");
-        getContentPane().add(JaugeSociabiliteValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 140, 50));
+        getContentPane().add(JaugeSociabiliteValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 190, 50));
 
         JaugeSanteValeur.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         JaugeSanteValeur.setText("100/100");
-        getContentPane().add(JaugeSanteValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 80, 150, 50));
+        getContentPane().add(JaugeSanteValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 150, 50));
 
         Jauges.setBackground(new java.awt.Color(255, 255, 255));
         Jauges.setForeground(new java.awt.Color(255, 255, 255));
@@ -527,28 +748,17 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         NomEvent.setText("Titre Event");
 
         DescriptionEvent.setBackground(new java.awt.Color(0, 0, 0));
-        DescriptionEvent.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        DescriptionEvent.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         DescriptionEvent.setText("Description Event");
 
-        DescriptionChoix1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix1.setText("DescriptionChoix1");
-
-        DescriptionChoix2.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix2.setText("DescriptionChoix2");
-
-        DescriptionChoix3.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix3.setText("DescriptionChoix3");
-
-        DescriptionChoix4.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        DescriptionChoix4.setText("DescriptionChoix4");
-
-        Choix1.setText("Choix1");
+        Choix1.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         Choix1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Choix1ActionPerformed(evt);
             }
         });
 
+        Choix2.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         Choix2.setText("Choix2");
         Choix2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -556,6 +766,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             }
         });
 
+        Choix3.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         Choix3.setText("Choix3");
         Choix3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -563,6 +774,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             }
         });
 
+        Choix4.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         Choix4.setText("Choix4");
         Choix4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -605,26 +817,6 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                     .addContainerGap(627, Short.MAX_VALUE)
                     .addComponent(Choix4, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(71, 71, 71)))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
-                    .addContainerGap(73, Short.MAX_VALUE)
-                    .addComponent(DescriptionChoix1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(692, Short.MAX_VALUE)))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EvenementLayout.createSequentialGroup()
-                    .addGap(69, 69, 69)
-                    .addComponent(DescriptionChoix2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(696, Short.MAX_VALUE)))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EvenementLayout.createSequentialGroup()
-                    .addGap(663, 663, 663)
-                    .addComponent(DescriptionChoix3, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(102, Short.MAX_VALUE)))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EvenementLayout.createSequentialGroup()
-                    .addGap(665, 665, 665)
-                    .addComponent(DescriptionChoix4, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(100, Short.MAX_VALUE)))
         );
         EvenementLayout.setVerticalGroup(
             EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -659,26 +851,6 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                     .addContainerGap(426, Short.MAX_VALUE)
                     .addComponent(Choix4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
-                    .addContainerGap(311, Short.MAX_VALUE)
-                    .addComponent(DescriptionChoix1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(174, Short.MAX_VALUE)))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
-                    .addContainerGap(449, Short.MAX_VALUE)
-                    .addComponent(DescriptionChoix2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(36, 36, 36)))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
-                    .addContainerGap(310, Short.MAX_VALUE)
-                    .addComponent(DescriptionChoix3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(175, 175, 175)))
-            .addGroup(EvenementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EvenementLayout.createSequentialGroup()
-                    .addContainerGap(449, Short.MAX_VALUE)
-                    .addComponent(DescriptionChoix4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(36, 36, 36)))
         );
 
         getContentPane().add(Evenement, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 1190, 560));
@@ -691,18 +863,31 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     private void Choix1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix1ActionPerformed
         // TODO add your handling code here:
+        choix = 0;
+        Jouer();
+        ModifierAffichageJauge();
+
     }//GEN-LAST:event_Choix1ActionPerformed
 
     private void Choix2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix2ActionPerformed
         // TODO add your handling code here:
+        choix = 1;
+        Jouer();
+        ModifierAffichageJauge();
     }//GEN-LAST:event_Choix2ActionPerformed
 
     private void Choix3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix3ActionPerformed
         // TODO add your handling code here:
+        choix = 2;
+        Jouer();
+        ModifierAffichageJauge();
     }//GEN-LAST:event_Choix3ActionPerformed
 
     private void Choix4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix4ActionPerformed
         // TODO add your handling code here:
+        choix = 3;
+        Jouer();
+        ModifierAffichageJauge();
     }//GEN-LAST:event_Choix4ActionPerformed
 
     private void bouton_demarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_demarrerActionPerformed
@@ -716,7 +901,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     private void diff_facileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_facileActionPerformed
         // TODO add your handling code here:
-
+        
         debut.setVisible(false);
         JaugeEducationValeur.setVisible(true);
         JaugeSociabiliteValeur.setVisible(true);
@@ -724,11 +909,18 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Jauges.setVisible(true);
         Personnage.setVisible(true);
         Evenement.setVisible(true);
+        jLabel14.setVisible(true);
+        jLabel15.setVisible(true);
+        jLabel16.setVisible(true);
 
         float multiplicateur = (float) 1;
         jaugeSante = new Jauge(70, "Sante", multiplicateur);
         jaugeSociabilite = new Jauge(70, "Sociabilite", multiplicateur);
         jaugeEducation = new Jauge(70, "Education", multiplicateur);
+        ModifierAffichageJauge();
+        
+        Jouer();
+        ModifierAffichageJauge();
 
     }//GEN-LAST:event_diff_facileActionPerformed
 
@@ -742,11 +934,17 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Jauges.setVisible(true);
         Personnage.setVisible(true);
         Evenement.setVisible(true);
+        jLabel14.setVisible(true);
+        jLabel15.setVisible(true);
+        jLabel16.setVisible(true);
 
         float multiplicateur = (float) 1.25;
         jaugeSante = new Jauge(60, "Sante", multiplicateur);
         jaugeSociabilite = new Jauge(60, "Sociabilite", multiplicateur);
         jaugeEducation = new Jauge(60, "Education", multiplicateur);
+        ModifierAffichageJauge();
+        Jouer();
+        ModifierAffichageJauge();
 
     }//GEN-LAST:event_diff_moyenActionPerformed
 
@@ -760,11 +958,18 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Jauges.setVisible(true);
         Personnage.setVisible(true);
         Evenement.setVisible(true);
+        jLabel14.setVisible(true);
+        jLabel15.setVisible(true);
+        jLabel16.setVisible(true);
 
         float multiplicateur = (float) 1.5;
         jaugeSante = new Jauge(50, "Sante", multiplicateur);
         jaugeSociabilite = new Jauge(50, "Sociabilite", multiplicateur);
         jaugeEducation = new Jauge(50, "Education", multiplicateur);
+        ModifierAffichageJauge();
+        
+        Jouer();
+        ModifierAffichageJauge();
 
     }//GEN-LAST:event_diff_moyen1ActionPerformed
 
@@ -785,13 +990,33 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu
+
+.class  
+
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu
+
+.class  
+
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu
+
+.class  
+
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu
+
+.class  
+
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -808,10 +1033,6 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JButton Choix2;
     private javax.swing.JButton Choix3;
     private javax.swing.JButton Choix4;
-    private javax.swing.JLabel DescriptionChoix1;
-    private javax.swing.JLabel DescriptionChoix2;
-    private javax.swing.JLabel DescriptionChoix3;
-    private javax.swing.JLabel DescriptionChoix4;
     private javax.swing.JLabel DescriptionEvent;
     private javax.swing.JPanel Evenement;
     private javax.swing.JLabel ImageDeFond;
@@ -832,6 +1053,9 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

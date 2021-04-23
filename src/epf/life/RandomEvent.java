@@ -65,8 +65,8 @@ public class RandomEvent {
     }
     public void initialiserTableauPhrases(String p1, String p2, String p3, String p4) {
         TableauPhrases[0]=p1;
-        TableauPhrases[1]=p1;
-        TableauPhrases[2]=p1;
+        TableauPhrases[1]=p2;
+        TableauPhrases[2]=p3;
         TableauPhrases[3]=p4;
     }
         
