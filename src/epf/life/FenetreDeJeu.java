@@ -24,6 +24,13 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private int jour = 0;
     private int WE = 0;
     private int moment = 0;
+    private int EventCourant;
+    private boolean RoD;
+    private int momentCourant;
+    private boolean deuxevent = false;
+    private int EventCourant2;
+    private boolean RoD2;
+    private int momentCourant2;
 
     public FenetreDeJeu() {
 
@@ -43,195 +50,118 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jLabel16.setVisible(false);
 
     }
-    
-
 
     public void Jouer() {
 
-        if (moment == 0) {
-            //afficher fond appart
+        if (WE == 5) {
+            moment = 4;
+            ModifierTexteEvenementDaily(0, moment);
+            RoD = false;
+            momentCourant = 4;
+            EventCourant = 0;
+            WE = 0;
+            jour+=2;
+            moment=-1;
+        } else {
 
-            //Calcul aléatoire
-            Random random = new Random();
+            if (moment == 0) {
+                //afficher fond appart
 
-            if (random.nextInt(100) < 30) {
-                int choixdeevent = random.nextInt(2);
-                if (choixdeevent == 0) {
+                //Calcul aléatoire
+                Random random = new Random();
+
+                if (random.nextInt(100) < 30) {
+                    int choixdeevent = random.nextInt(2);
                     ModifierTexteEvenementRandom(choixdeevent, moment);
-
-                    int jaugevie = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
-                    int jaugesociabilite = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
-                    int jaugeeducation = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
-                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-                
-
+                    RoD = true;
+                    momentCourant = 0;
+                    EventCourant = choixdeevent;
                 } else {
-
-                    //Daily
                     ModifierTexteEvenementDaily(0, moment);
+                    RoD = false;
+                    momentCourant = 0;
+                    EventCourant = 0;
+                }
+            }
 
-                    int jaugevie = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(0, choix);
-                    int jaugesociabilite = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(1, choix);
-                    int jaugeeducation = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(2, choix);
-                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-                  
+            //Fin moment 0
+            // jour modulo 5 = 0
+            //Fin matin
+            if (moment == 1) {
+                //afficher fond appart
 
-                    // Event
+                //Calcul aléatoire
+                Random random = new Random();
+
+                if (random.nextInt(100) < 30) {
+                    int choixdeevent = random.nextInt(2);
+
                     ModifierTexteEvenementRandom(choixdeevent, moment);
-
-                    int jaugevie1 = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
-                    int jaugesociabilite1 = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
-                    int jaugeeducation1 = listeEvent.recupererEventMatinRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
-                    AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
-                  
+                    RoD = true;
+                    momentCourant = 1;
+                    EventCourant = choixdeevent;
+                } else {
+                    ModifierTexteEvenementDaily(0, moment);
+                    RoD = false;
+                    momentCourant = 1;
+                    EventCourant = 0;
 
                 }
-
-            } else {
-                ModifierTexteEvenementDaily(0, moment);
-
-                int jaugevie = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(0, choix);
-                int jaugesociabilite = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(1, choix);
-                int jaugeeducation = listeEvent.recupererEventMatin(0).LireTableauDeChoixDaily(2, choix);
-                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-               
             }
-        }
 
-        //Fin moment 0
-        
+            if (moment == 2) {
+                //afficher fond appart
 
-        // jour modulo 5 = 0
-        //Fin matin
-        if (moment == 1) {
-            //afficher fond appart
+                //Calcul aléatoire
+                Random random = new Random();
 
-            //Calcul aléatoire
-            Random random = new Random();
+                if (random.nextInt(100) < 30) {
+                    int choixdeevent = random.nextInt(3);
 
-            if (random.nextInt(100) < 30) {
-                int choixdeevent = random.nextInt(2);
-
-                ModifierTexteEvenementDaily(0, moment);
-
-                int jaugevie = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(0, choix);
-                int jaugesociabilite = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(1, choix);
-                int jaugeeducation = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(2, choix);
-                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-            
-
-                // Event random
-                ModifierTexteEvenementRandom(choixdeevent, moment);
-
-                int jaugevie1 = listeEvent.recupererEventMidiRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
-                int jaugesociabilite1 = listeEvent.recupererEventMidiRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
-                int jaugeeducation1 = listeEvent.recupererEventMidiRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
-                AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
-            
-
-            } else {
-                ModifierTexteEvenementDaily(0, moment);
-
-                int jaugevie = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(0, choix);
-                int jaugesociabilite = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(1, choix);
-                int jaugeeducation = listeEvent.recupererEventMidi(0).LireTableauDeChoixDaily(2, choix);
-                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-              
-            }
-        }
-
-        if (moment == 2) {
-            //afficher fond appart
-
-            //Calcul aléatoire
-            Random random = new Random();
-
-            if (random.nextInt(100) < 30) {
-                int choixdeevent = random.nextInt(3);
-
-                ModifierTexteEvenementDaily(0, moment);
-
-                int jaugevie = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(0, choix);
-                int jaugesociabilite = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(1, choix);
-                int jaugeeducation = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(2, choix);
-                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-                
-
-                // Event random
-                ModifierTexteEvenementRandom(choixdeevent, moment);
-
-                int jaugevie1 = listeEvent.recupererEventApresMidiRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
-                int jaugesociabilite1 = listeEvent.recupererEventApresMidiRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
-                int jaugeeducation1 = listeEvent.recupererEventApresMidiRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
-                AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
-
-            } else {
-                ModifierTexteEvenementDaily(0, moment);
-
-                int jaugevie = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(0, choix);
-                int jaugesociabilite = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(1, choix);
-                int jaugeeducation = listeEvent.recupererEventApresMidi(0).LireTableauDeChoixDaily(2, choix);
-                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-            }
-        }
-        if (moment == 3) {
-            //afficher fond appart
-
-            //Calcul aléatoire
-            Random random = new Random();
-
-            if (random.nextInt(100) < 30) {
-                int choixdeevent = random.nextInt(2);
-                if (choixdeevent == 0) {
                     ModifierTexteEvenementRandom(choixdeevent, moment);
+                    RoD = true;
+                    momentCourant = 2;
+                    EventCourant = choixdeevent;
+                } else {
+                    ModifierTexteEvenementDaily(0, moment);
+                    RoD = false;
+                    momentCourant = 2;
+                    EventCourant = 0;
+                }
+            }
+            if (moment == 3) {
+                //afficher fond appart
 
-                    int jaugevie = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
-                    int jaugesociabilite = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
-                    int jaugeeducation = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
-                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                //Calcul aléatoire
+                Random random = new Random();
+
+                if (random.nextInt(100) < 30) {
+                    int choixdeevent = random.nextInt(2);
+                    if (choixdeevent == 0) {
+                        ModifierTexteEvenementRandom(choixdeevent, moment);
+                        RoD = true;
+                        momentCourant = 3;
+                        EventCourant = choixdeevent;
+                    }
 
                 } else {
-
-                    // Event Random 
-                    ModifierTexteEvenementRandom(choixdeevent, moment);
-
-                    int jaugevie1 = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(0, choix);
-                    int jaugesociabilite1 = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(1, choix);
-                    int jaugeeducation1 = listeEvent.recupererEventSoirRandom(choixdeevent).lireTableauDeChoixRandom(2, choix);
-                    AjouterValeurJauges(jaugevie1, jaugesociabilite1, jaugeeducation1);
-
-                    //Daily
                     ModifierTexteEvenementDaily(0, moment);
-
-                    int jaugevie = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(0, choix);
-                    int jaugesociabilite = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(1, choix);
-                    int jaugeeducation = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(2, choix);
-                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
-
+                    RoD = false;
+                    momentCourant = 3;
+                    EventCourant = 0;
                 }
-
-            } else {
-                ModifierTexteEvenementDaily(0, moment);
-
-                int jaugevie = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(0, choix);
-                int jaugesociabilite = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(1, choix);
-                int jaugeeducation = listeEvent.recupererEventSoir(0).LireTableauDeChoixDaily(2, choix);
-                AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
             }
         }
-        
-        moment ++;
-        
+
+        moment++;
+
         if (moment == 4) {
             moment = 0;
             jour++;
+            WE++;
         }
-        
+
     }
-
-
-
-    
 
     public void AjouterValeurJauges(int jaugevie, int jaugesociabilite, int jaugeeducation) {
         jaugeSante.affecterValeur(jaugevie);
@@ -258,8 +188,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -274,8 +206,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventMidi(numeroEvenement).LireTableauDePhraseDaily(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -289,8 +223,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventApresMidi(numeroEvenement).LireTableauDePhraseDaily(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -304,8 +240,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventSoir(numeroEvenement).LireTableauDePhraseDaily(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -319,8 +257,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererWeekend(numeroEvenement).LireTableauDePhraseDaily(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -341,8 +281,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).LireTableauDePhraseRandom(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -357,8 +299,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -372,8 +316,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventApresMidiRandom(numeroEvenement).LireTableauDePhraseRandom(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
@@ -387,14 +333,104 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 if (listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(3) == "null") {
 
                     Choix4.setText("");
+                    Choix4.setEnabled(false);
                 } else {
                     Choix4.setText(listeEvent.recupererEventSoirRandom(numeroEvenement).LireTableauDePhraseRandom(3));
+                    Choix4.setEnabled(true);
                 }
 
                 break;
             default:
         }
 
+    }
+
+    public void affectationvaleurjauge(boolean DR, int mommentjournée, int eventcourant) {
+        int jaugevie;
+        int jaugesociabilite;
+        int jaugeeducation;
+        if (DR == false) {
+            switch (mommentjournée) {
+                case 0:
+                    jaugevie = listeEvent.recupererEventMatin(EventCourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMatin(EventCourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMatin(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 1:
+                    jaugevie = listeEvent.recupererEventMidi(EventCourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMidi(EventCourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMidi(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 2:
+                    jaugevie = listeEvent.recupererEventApresMidi(EventCourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventApresMidi(EventCourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventApresMidi(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 3:
+                    jaugevie = listeEvent.recupererEventSoir(EventCourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventSoir(EventCourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventSoir(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 4:
+                    jaugevie = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+            }
+        } else {
+            switch (mommentjournée) {
+                case 0:
+                    jaugevie = listeEvent.recupererEventMatinRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMatinRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMatinRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 1:
+                    jaugevie = listeEvent.recupererEventMidiRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMidiRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMidiRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 2:
+                    jaugevie = listeEvent.recupererEventApresMidiRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventApresMidiRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventApresMidiRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 3:
+                    jaugevie = listeEvent.recupererEventSoirRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventSoirRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventSoirRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+                case 4:
+                    jaugevie = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
+                    break;
+            }
+        }
+    }
+
+    public void verifierdefaite() {
+        if (jaugeSante.LireValeur() <= 0 || jaugeSociabilite.LireValeur() <= 0 || jaugeEducation.LireValeur() <= 0) {
+            JaugeEducationValeur.setVisible(false);
+            JaugeSociabiliteValeur.setVisible(false);
+            JaugeSanteValeur.setVisible(false);
+            Jauges.setVisible(false);
+            Personnage.setVisible(false);
+            Evenement.setVisible(false);
+            debut.setVisible(false);
+            jLabel14.setVisible(false);
+            jLabel15.setVisible(false);
+            jLabel16.setVisible(false);
+        }
     }
 
     /**
@@ -864,30 +900,45 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private void Choix1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix1ActionPerformed
         // TODO add your handling code here:
         choix = 0;
-        Jouer();
+        affectationvaleurjauge(RoD, momentCourant, EventCourant);
+        //verifierdefaite();
         ModifierAffichageJauge();
+
+        Jouer();
 
     }//GEN-LAST:event_Choix1ActionPerformed
 
     private void Choix2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix2ActionPerformed
         // TODO add your handling code here:
         choix = 1;
-        Jouer();
+        affectationvaleurjauge(RoD, momentCourant, EventCourant);
+        //verifierdefaite();
         ModifierAffichageJauge();
+
+        Jouer();
+
     }//GEN-LAST:event_Choix2ActionPerformed
 
     private void Choix3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix3ActionPerformed
         // TODO add your handling code here:
         choix = 2;
-        Jouer();
+        affectationvaleurjauge(RoD, momentCourant, EventCourant);
+        //verifierdefaite();
         ModifierAffichageJauge();
+
+        Jouer();
+
     }//GEN-LAST:event_Choix3ActionPerformed
 
     private void Choix4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix4ActionPerformed
         // TODO add your handling code here:
         choix = 3;
-        Jouer();
+        affectationvaleurjauge(RoD, momentCourant, EventCourant);
+        //verifierdefaite();
         ModifierAffichageJauge();
+
+        Jouer();
+
     }//GEN-LAST:event_Choix4ActionPerformed
 
     private void bouton_demarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_demarrerActionPerformed
@@ -901,7 +952,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     private void diff_facileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_facileActionPerformed
         // TODO add your handling code here:
-        
+
         debut.setVisible(false);
         JaugeEducationValeur.setVisible(true);
         JaugeSociabiliteValeur.setVisible(true);
@@ -918,10 +969,13 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jaugeSociabilite = new Jauge(70, "Sociabilite", multiplicateur);
         jaugeEducation = new Jauge(70, "Education", multiplicateur);
         ModifierAffichageJauge();
-        
-        Jouer();
-        ModifierAffichageJauge();
 
+        //Daily
+        ModifierTexteEvenementDaily(0, moment);
+        RoD = false;
+        moment = 1;
+        EventCourant = 0;
+        momentCourant = 0;
     }//GEN-LAST:event_diff_facileActionPerformed
 
     private void diff_moyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_moyenActionPerformed
@@ -943,8 +997,12 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jaugeSociabilite = new Jauge(60, "Sociabilite", multiplicateur);
         jaugeEducation = new Jauge(60, "Education", multiplicateur);
         ModifierAffichageJauge();
-        Jouer();
-        ModifierAffichageJauge();
+        //Daily
+        ModifierTexteEvenementDaily(0, moment);
+        RoD = false;
+        moment = 1;
+        EventCourant = 0;
+        momentCourant = 0;
 
     }//GEN-LAST:event_diff_moyenActionPerformed
 
@@ -967,9 +1025,13 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jaugeSociabilite = new Jauge(50, "Sociabilite", multiplicateur);
         jaugeEducation = new Jauge(50, "Education", multiplicateur);
         ModifierAffichageJauge();
-        
-        Jouer();
-        ModifierAffichageJauge();
+
+        //Daily
+        ModifierTexteEvenementDaily(0, moment);
+        RoD = false;
+        moment = 1;
+        EventCourant = 0;
+        momentCourant = 0;
 
     }//GEN-LAST:event_diff_moyen1ActionPerformed
 
@@ -990,33 +1052,17 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetreDeJeu
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetreDeJeu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
