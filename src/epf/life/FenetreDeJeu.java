@@ -7,6 +7,7 @@ package epf.life;
 
 import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 
 /**
  *
@@ -31,6 +32,19 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private int EventCourant2;
     private boolean RoD2;
     private int momentCourant2;
+    ImageIcon img_Antoine = new javax.swing.ImageIcon(getClass().getResource("/images/Antoine.png"));
+    ImageIcon img_Barrandon = new javax.swing.ImageIcon(getClass().getResource("/images/Barrandon.png"));
+    ImageIcon img_Campus = new javax.swing.ImageIcon(getClass().getResource("/images/Campus.jpg"));
+    ImageIcon img_Copine = new javax.swing.ImageIcon(getClass().getResource("/images/Copine.png"));
+    ImageIcon img_Jousset = new javax.swing.ImageIcon(getClass().getResource("/images/Jousset.png"));
+    ImageIcon img_Rue = new javax.swing.ImageIcon(getClass().getResource("/images/Rue.jpg"));
+    ImageIcon img_Voleur = new javax.swing.ImageIcon(getClass().getResource("/images/Voleur.png"));
+    ImageIcon img_Winston = new javax.swing.ImageIcon(getClass().getResource("/images/Winston.png"));
+    ImageIcon img_Appartement = new javax.swing.ImageIcon(getClass().getResource("/images/appartement étudiant.jpg"));
+    ImageIcon img_Foyer = new javax.swing.ImageIcon(getClass().getResource("/images/foyer.jpg"));
+    ImageIcon img_Jauge = new javax.swing.ImageIcon(getClass().getResource("/images/jauge.jpg"));
+    ImageIcon img_Soirée = new javax.swing.ImageIcon(getClass().getResource("/images/soirée.jpg"));
+    ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/images/vide.png"));
 
     public FenetreDeJeu() {
 
@@ -48,6 +62,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jLabel14.setVisible(false);
         jLabel15.setVisible(false);
         jLabel16.setVisible(false);
+        Défaite.setVisible(false);
+        Victoire.setVisible(false);
 
     }
 
@@ -60,8 +76,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             momentCourant = 4;
             EventCourant = 0;
             WE = 0;
-            jour+=2;
-            moment=-1;
+            jour += 2;
+            moment = -1;
         } else {
 
             if (moment == 0) {
@@ -159,6 +175,153 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             moment = 0;
             jour++;
             WE++;
+        }
+
+    }
+
+    
+    
+    public void AjouterImages(boolean DR, int momentjournée, int eventcourant) {
+        String NomPersonnage = null;
+        String FondAssocie = null;
+
+        if (DR == false) {
+            switch (momentjournée) {
+                case 0:
+
+                    NomPersonnage = listeEvent.recupererEventMatin(eventcourant).LireNomPersonnageDaily();
+                    FondAssocie = listeEvent.recupererEventMatin(eventcourant).LireFondAssocieDaily();
+                    break;
+
+                case 1:
+
+                    NomPersonnage = listeEvent.recupererEventMidi(eventcourant).LireNomPersonnageDaily();
+                    FondAssocie = listeEvent.recupererEventMidi(eventcourant).LireFondAssocieDaily();
+                    break;
+
+                case 2:
+                    NomPersonnage = listeEvent.recupererEventApresMidi(eventcourant).LireNomPersonnageDaily();
+                    FondAssocie = listeEvent.recupererEventApresMidi(eventcourant).LireFondAssocieDaily();
+                    break;
+
+                case 3:
+                    NomPersonnage = listeEvent.recupererEventSoir(eventcourant).LireNomPersonnageDaily();
+                    FondAssocie = listeEvent.recupererEventSoir(eventcourant).LireFondAssocieDaily();
+                    break;
+                
+                    case 4:
+                    NomPersonnage = listeEvent.recupererWeekend(eventcourant).LireNomPersonnageDaily();
+                    FondAssocie = listeEvent.recupererWeekend(eventcourant).LireFondAssocieDaily();
+                    break;
+
+            }
+        } else if (DR == true) {
+            switch (momentjournée) {
+                case 0:
+
+                    NomPersonnage = listeEvent.recupererEventMatinRandom(eventcourant).lireNomPersonnageRandom();
+                    FondAssocie = listeEvent.recupererEventMatinRandom(eventcourant).LireFondAssocieRandom();
+                    break;
+
+                case 1:
+
+                    NomPersonnage = listeEvent.recupererEventMidiRandom(eventcourant).lireNomPersonnageRandom();
+                    FondAssocie = listeEvent.recupererEventMidiRandom(eventcourant).LireFondAssocieRandom();
+                    break;
+
+                case 2:
+                    NomPersonnage = listeEvent.recupererEventApresMidiRandom(eventcourant).lireNomPersonnageRandom();
+                    FondAssocie = listeEvent.recupererEventApresMidiRandom(eventcourant).LireFondAssocieRandom();
+                    break;
+
+                case 3:
+                    NomPersonnage = listeEvent.recupererEventSoirRandom(eventcourant).lireNomPersonnageRandom();
+                    FondAssocie = listeEvent.recupererEventSoirRandom(eventcourant).LireFondAssocieRandom();
+                    break;
+            }
+        }
+
+        switch (NomPersonnage) {
+            case "Antoine":
+                Personnage.setIcon(img_Antoine);
+                break;
+
+            case "Barrandon":
+                Personnage.setIcon(img_Barrandon);
+                break;
+
+            case "Copine":
+                Personnage.setIcon(img_Copine);
+                break;
+
+            case "Jousset":
+                Personnage.setIcon(img_Jousset);
+                break;
+
+            case "Voleur":
+                Personnage.setIcon(img_Voleur);
+                break;
+
+            case "Winston":
+                Personnage.setIcon(img_Winston);
+                break;
+
+            case "X":
+                Personnage.setIcon(img_vide);
+                break;
+
+            default:
+        }
+        if (DR == false) {
+
+            switch (FondAssocie) {
+
+                case "campus":
+                    ImageDeFond.setIcon(img_Campus);
+                    break;
+
+                case "rue":
+                    ImageDeFond.setIcon(img_Rue);
+                    break;
+
+                case "chambre":
+                    ImageDeFond.setIcon(img_Appartement);
+                    break;
+
+                case "foyer":
+                    ImageDeFond.setIcon(img_Foyer);
+                    break;
+
+                case "soiree":
+                    ImageDeFond.setIcon(img_Soirée);
+                    break;
+
+            }
+        } else if (DR == true) {
+
+            switch (FondAssocie) {
+
+                case "campus":
+                    ImageDeFond.setIcon(img_Campus);
+                    break;
+
+                case "rue":
+                    ImageDeFond.setIcon(img_Rue);
+                    break;
+
+                case "chambre":
+                    ImageDeFond.setIcon(img_Appartement);
+                    break;
+
+                case "foyer":
+                    ImageDeFond.setIcon(img_Foyer);
+                    break;
+
+                case "soiree":
+                    ImageDeFond.setIcon(img_Soirée);
+                    break;
+
+            }
         }
 
     }
@@ -345,73 +508,73 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     }
 
-    public void affectationvaleurjauge(boolean DR, int mommentjournée, int eventcourant) {
+    public void affectationvaleurjauge(boolean DR, int momentjournée, int eventcourant) {
         int jaugevie;
         int jaugesociabilite;
         int jaugeeducation;
         if (DR == false) {
-            switch (mommentjournée) {
+            switch (momentjournée) {
                 case 0:
-                    jaugevie = listeEvent.recupererEventMatin(EventCourant).LireTableauDeChoixDaily(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventMatin(EventCourant).LireTableauDeChoixDaily(1, choix);
-                    jaugeeducation = listeEvent.recupererEventMatin(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    jaugevie = listeEvent.recupererEventMatin(eventcourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMatin(eventcourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMatin(eventcourant).LireTableauDeChoixDaily(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 1:
-                    jaugevie = listeEvent.recupererEventMidi(EventCourant).LireTableauDeChoixDaily(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventMidi(EventCourant).LireTableauDeChoixDaily(1, choix);
-                    jaugeeducation = listeEvent.recupererEventMidi(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    jaugevie = listeEvent.recupererEventMidi(eventcourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMidi(eventcourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMidi(eventcourant).LireTableauDeChoixDaily(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 2:
-                    jaugevie = listeEvent.recupererEventApresMidi(EventCourant).LireTableauDeChoixDaily(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventApresMidi(EventCourant).LireTableauDeChoixDaily(1, choix);
-                    jaugeeducation = listeEvent.recupererEventApresMidi(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    jaugevie = listeEvent.recupererEventApresMidi(eventcourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventApresMidi(eventcourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventApresMidi(eventcourant).LireTableauDeChoixDaily(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 3:
-                    jaugevie = listeEvent.recupererEventSoir(EventCourant).LireTableauDeChoixDaily(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventSoir(EventCourant).LireTableauDeChoixDaily(1, choix);
-                    jaugeeducation = listeEvent.recupererEventSoir(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    jaugevie = listeEvent.recupererEventSoir(eventcourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventSoir(eventcourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererEventSoir(eventcourant).LireTableauDeChoixDaily(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 4:
-                    jaugevie = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(0, choix);
-                    jaugesociabilite = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(1, choix);
-                    jaugeeducation = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    jaugevie = listeEvent.recupererWeekend(eventcourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererWeekend(eventcourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererWeekend(eventcourant).LireTableauDeChoixDaily(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
             }
         } else {
-            switch (mommentjournée) {
+            switch (momentjournée) {
                 case 0:
-                    jaugevie = listeEvent.recupererEventMatinRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventMatinRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
-                    jaugeeducation = listeEvent.recupererEventMatinRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    jaugevie = listeEvent.recupererEventMatinRandom(eventcourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMatinRandom(eventcourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMatinRandom(eventcourant).lireTableauDeChoixRandom(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 1:
-                    jaugevie = listeEvent.recupererEventMidiRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventMidiRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
-                    jaugeeducation = listeEvent.recupererEventMidiRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    jaugevie = listeEvent.recupererEventMidiRandom(eventcourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventMidiRandom(eventcourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventMidiRandom(eventcourant).lireTableauDeChoixRandom(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 2:
-                    jaugevie = listeEvent.recupererEventApresMidiRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventApresMidiRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
-                    jaugeeducation = listeEvent.recupererEventApresMidiRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    jaugevie = listeEvent.recupererEventApresMidiRandom(eventcourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventApresMidiRandom(eventcourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventApresMidiRandom(eventcourant).lireTableauDeChoixRandom(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 3:
-                    jaugevie = listeEvent.recupererEventSoirRandom(EventCourant).lireTableauDeChoixRandom(0, choix);
-                    jaugesociabilite = listeEvent.recupererEventSoirRandom(EventCourant).lireTableauDeChoixRandom(1, choix);
-                    jaugeeducation = listeEvent.recupererEventSoirRandom(EventCourant).lireTableauDeChoixRandom(2, choix);
+                    jaugevie = listeEvent.recupererEventSoirRandom(eventcourant).lireTableauDeChoixRandom(0, choix);
+                    jaugesociabilite = listeEvent.recupererEventSoirRandom(eventcourant).lireTableauDeChoixRandom(1, choix);
+                    jaugeeducation = listeEvent.recupererEventSoirRandom(eventcourant).lireTableauDeChoixRandom(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 4:
-                    jaugevie = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(0, choix);
-                    jaugesociabilite = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(1, choix);
-                    jaugeeducation = listeEvent.recupererWeekend(EventCourant).LireTableauDeChoixDaily(2, choix);
+                    jaugevie = listeEvent.recupererWeekend(eventcourant).LireTableauDeChoixDaily(0, choix);
+                    jaugesociabilite = listeEvent.recupererWeekend(eventcourant).LireTableauDeChoixDaily(1, choix);
+                    jaugeeducation = listeEvent.recupererWeekend(eventcourant).LireTableauDeChoixDaily(2, choix);
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
             }
@@ -430,6 +593,23 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             jLabel14.setVisible(false);
             jLabel15.setVisible(false);
             jLabel16.setVisible(false);
+            Défaite.setVisible(true);
+        }
+    }
+
+    public void verifiervictoire() {
+        if (jour == 152) {
+            JaugeEducationValeur.setVisible(false);
+            JaugeSociabiliteValeur.setVisible(false);
+            JaugeSanteValeur.setVisible(false);
+            Jauges.setVisible(false);
+            Personnage.setVisible(false);
+            Evenement.setVisible(false);
+            debut.setVisible(false);
+            jLabel14.setVisible(false);
+            jLabel15.setVisible(false);
+            jLabel16.setVisible(false);
+            Victoire.setVisible(true);
         }
     }
 
@@ -452,6 +632,16 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         bouton_demarrer = new javax.swing.JButton();
+        Victoire = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        Défaite = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         debut = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -482,30 +672,39 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Regles.setBackground(new java.awt.Color(255, 255, 255));
+        Regles.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel1.setText("~ Règles du Jeu ~");
+        Regles.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 285, 50));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
         jLabel2.setText("Bienvenue sur EPF Life");
+        Regles.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 11, 426, 63));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel3.setText("Un jeu de Gestion, où le but est de survivre 1 semestre");
+        Regles.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 85, 802, 57));
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel4.setText("- Faîtes des choix au cours de la journée, à travers des");
+        Regles.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 813, 68));
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel5.setText("évènements quotidiens et aléatoires");
+        Regles.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 823, 40));
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel6.setText("- Veillez à garder vos trois jauges équilibrées. Si l'une ");
+        Regles.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 252, 824, 68));
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel7.setText("tombe à 0, c'est game over");
+        Regles.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 814, 40));
 
         jLabel8.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel8.setText("- Survivez 1 semestre, et c'est gagné :)");
+        Regles.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 825, 79));
 
         bouton_demarrer.setBackground(new java.awt.Color(204, 255, 204));
         bouton_demarrer.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
@@ -515,102 +714,107 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 bouton_demarrerActionPerformed(evt);
             }
         });
+        Regles.add(bouton_demarrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 535, 95));
 
-        javax.swing.GroupLayout ReglesLayout = new javax.swing.GroupLayout(Regles);
-        Regles.setLayout(ReglesLayout);
-        ReglesLayout.setHorizontalGroup(
-            ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ReglesLayout.createSequentialGroup()
-                .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ReglesLayout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ReglesLayout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(bouton_demarrer, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(235, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(199, 199, 199)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(37, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(21, 21, 21)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(36, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(11, 11, 11)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(36, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(1, 1, 1)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(35, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(1, 1, 1)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(36, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(34, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(1, 1, 1)))
+        getContentPane().add(Regles, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, 680));
+
+        jLabel17.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel17.setText("Tu es parvenu à survivre jusqu'au bout");
+
+        jLabel18.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel18.setText("Bienvenue en 3e année :)");
+
+        jLabel19.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel19.setText("~ Merci d'avoir joué ~");
+
+        jLabel20.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel20.setText("Bravo ! Le semestre est terminé !");
+
+        javax.swing.GroupLayout VictoireLayout = new javax.swing.GroupLayout(Victoire);
+        Victoire.setLayout(VictoireLayout);
+        VictoireLayout.setHorizontalGroup(
+            VictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VictoireLayout.createSequentialGroup()
+                .addContainerGap(170, Short.MAX_VALUE)
+                .addGroup(VictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VictoireLayout.createSequentialGroup()
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))
+                    .addGroup(VictoireLayout.createSequentialGroup()
+                        .addGroup(VictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(1144, Short.MAX_VALUE))))
         );
-        ReglesLayout.setVerticalGroup(
-            ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ReglesLayout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
-                .addComponent(bouton_demarrer, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ReglesLayout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(552, Short.MAX_VALUE)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ReglesLayout.createSequentialGroup()
-                    .addGap(105, 105, 105)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(478, Short.MAX_VALUE)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReglesLayout.createSequentialGroup()
-                    .addContainerGap(243, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(329, 329, 329)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ReglesLayout.createSequentialGroup()
-                    .addGap(286, 286, 286)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(306, Short.MAX_VALUE)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ReglesLayout.createSequentialGroup()
-                    .addGap(334, 334, 334)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(238, Short.MAX_VALUE)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ReglesLayout.createSequentialGroup()
-                    .addGap(365, 365, 365)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(202, Short.MAX_VALUE)))
-            .addGroup(ReglesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ReglesLayout.createSequentialGroup()
-                    .addGap(421, 421, 421)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(140, Short.MAX_VALUE)))
+        VictoireLayout.setVerticalGroup(
+            VictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VictoireLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
 
-        getContentPane().add(Regles, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
+        getContentPane().add(Victoire, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel21.setText("Tu n'as pas survécu au semestre... ");
+
+        jLabel22.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel22.setText("Tu peux retenter ta chance au prochain !");
+
+        jLabel23.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel23.setText("~ Merci d'avoir joué ~");
+
+        jLabel24.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel24.setText("Mince ! Une de tes jauges est arrivée à 0. ");
+
+        javax.swing.GroupLayout DéfaiteLayout = new javax.swing.GroupLayout(Défaite);
+        Défaite.setLayout(DéfaiteLayout);
+        DéfaiteLayout.setHorizontalGroup(
+            DéfaiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DéfaiteLayout.createSequentialGroup()
+                .addContainerGap(152, Short.MAX_VALUE)
+                .addGroup(DéfaiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DéfaiteLayout.createSequentialGroup()
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DéfaiteLayout.createSequentialGroup()
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DéfaiteLayout.createSequentialGroup()
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(281, 281, 281))))
+            .addGroup(DéfaiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DéfaiteLayout.createSequentialGroup()
+                    .addContainerGap(154, Short.MAX_VALUE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(134, 134, 134)))
+        );
+        DéfaiteLayout.setVerticalGroup(
+            DéfaiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DéfaiteLayout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
+            .addGroup(DéfaiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DéfaiteLayout.createSequentialGroup()
+                    .addGap(99, 99, 99)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(464, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(Défaite, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         debut.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -764,7 +968,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         JaugeSanteValeur.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         JaugeSanteValeur.setText("100/100");
-        getContentPane().add(JaugeSanteValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 150, 50));
+        getContentPane().add(JaugeSanteValeur, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 180, 50));
 
         Jauges.setBackground(new java.awt.Color(255, 255, 255));
         Jauges.setForeground(new java.awt.Color(255, 255, 255));
@@ -774,7 +978,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         getContentPane().add(Jauges, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1390, 192));
 
         Personnage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Antoine.png"))); // NOI18N
-        Personnage.setText("jLabel1");
+        Personnage.setText(" ");
         getContentPane().add(Personnage, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 250, 500, 700));
 
         Evenement.setBackground(new java.awt.Color(255, 255, 255));
@@ -901,44 +1105,53 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         // TODO add your handling code here:
         choix = 0;
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
-        //verifierdefaite();
+
+        verifierdefaite();
+        verifiervictoire();
         ModifierAffichageJauge();
 
         Jouer();
-
+        AjouterImages(RoD, momentCourant, EventCourant);
     }//GEN-LAST:event_Choix1ActionPerformed
 
     private void Choix2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix2ActionPerformed
         // TODO add your handling code here:
         choix = 1;
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
-        //verifierdefaite();
+
+        verifierdefaite();
+        verifiervictoire();
         ModifierAffichageJauge();
 
         Jouer();
-
+        AjouterImages(RoD, momentCourant, EventCourant);
     }//GEN-LAST:event_Choix2ActionPerformed
 
     private void Choix3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix3ActionPerformed
         // TODO add your handling code here:
         choix = 2;
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
-        //verifierdefaite();
+
+        verifierdefaite();
+        verifiervictoire();
         ModifierAffichageJauge();
 
         Jouer();
-
+        AjouterImages(RoD, momentCourant, EventCourant);
     }//GEN-LAST:event_Choix3ActionPerformed
 
     private void Choix4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix4ActionPerformed
         // TODO add your handling code here:
         choix = 3;
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
-        //verifierdefaite();
+
+        verifierdefaite();
+        verifiervictoire();
+        
         ModifierAffichageJauge();
 
         Jouer();
-
+        AjouterImages(RoD, momentCourant, EventCourant);
     }//GEN-LAST:event_Choix4ActionPerformed
 
     private void bouton_demarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_demarrerActionPerformed
@@ -976,6 +1189,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         moment = 1;
         EventCourant = 0;
         momentCourant = 0;
+        AjouterImages(RoD, momentCourant, EventCourant);
     }//GEN-LAST:event_diff_facileActionPerformed
 
     private void diff_moyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_moyenActionPerformed
@@ -1003,7 +1217,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         moment = 1;
         EventCourant = 0;
         momentCourant = 0;
-
+        AjouterImages(RoD, momentCourant, EventCourant);
     }//GEN-LAST:event_diff_moyenActionPerformed
 
     private void diff_moyen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_moyen1ActionPerformed
@@ -1032,6 +1246,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         moment = 1;
         EventCourant = 0;
         momentCourant = 0;
+        AjouterImages(RoD, momentCourant, EventCourant);
 
     }//GEN-LAST:event_diff_moyen1ActionPerformed
 
@@ -1080,6 +1295,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JButton Choix3;
     private javax.swing.JButton Choix4;
     private javax.swing.JLabel DescriptionEvent;
+    private javax.swing.JPanel Défaite;
     private javax.swing.JPanel Evenement;
     private javax.swing.JLabel ImageDeFond;
     private javax.swing.JLabel JaugeEducationValeur;
@@ -1089,6 +1305,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel NomEvent;
     private javax.swing.JLabel Personnage;
     private javax.swing.JPanel Regles;
+    private javax.swing.JPanel Victoire;
     private javax.swing.JButton bouton_demarrer;
     private javax.swing.JPanel debut;
     private javax.swing.JButton diff_facile;
@@ -1102,7 +1319,15 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1111,4 +1336,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon(ImageIcon img_Antoine) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
