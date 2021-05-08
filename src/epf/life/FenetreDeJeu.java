@@ -18,20 +18,26 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     /**
      * Creates new form FenetreDeJeu
      */
-    private Jauge jaugeSante, jaugeSociabilite, jaugeEducation;
-    private ListeEvent listeEvent = new ListeEvent();
-    private boolean condition = false;
-    private int choix;
-    private int jour = 0;
-    private int WE = 0;
-    private int moment = 0;
-    private int EventCourant;
-    private boolean RoD;
-    private int momentCourant;
-    private boolean deuxevent = false;
-    private int EventCourant2;
-    private boolean RoD2;
-    private int momentCourant2;
+    // ----------------------------- ATTRIBUTS ------------------------------------
+    private Jauge jaugeSante, jaugeSociabilite, jaugeEducation; //Création des trois jauges
+
+    private ListeEvent listeEvent = new ListeEvent(); //Création des évènements
+
+    private int choix; //Enregistrement du choix du joueur 
+
+    private int jour = 0; //Compteur de jour
+
+    private int WE = 0; //Compteur du week end
+
+    private int moment = 0; //Moment de la journée (0 matin, 1 midi, 2 après-midi, 3 soir, 4 week-end)
+
+    private int EventCourant; //Evènement courant
+
+    private boolean RoD; //Evènement daily ou random
+
+    private int momentCourant; //Moment courant
+
+    //Implémentation des images -----------
     ImageIcon img_Antoine = new javax.swing.ImageIcon(getClass().getResource("/images/Antoine.png"));
     ImageIcon img_Barrandon = new javax.swing.ImageIcon(getClass().getResource("/images/Barrandon.png"));
     ImageIcon img_Campus = new javax.swing.ImageIcon(getClass().getResource("/images/Campus.jpg"));
@@ -46,11 +52,12 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     ImageIcon img_Soirée = new javax.swing.ImageIcon(getClass().getResource("/images/soirée.jpg"));
     ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/images/vide.png"));
 
+    // ----------------------------- CODE PRINCIPAL ------------------------------------
     public FenetreDeJeu() {
 
         initComponents();
 
-        //Affichage d'ambiance
+        //Affichage du début, uniquement le panel des règles ---------------
         Regles.setVisible(true);
         JaugeEducationValeur.setVisible(false);
         JaugeSociabiliteValeur.setVisible(false);
@@ -67,125 +74,17 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     }
 
-    public void Jouer() {
-
-        if (WE == 5) {
-            moment = 4;
-            ModifierTexteEvenementDaily(0, moment);
-            RoD = false;
-            momentCourant = 4;
-            EventCourant = 0;
-            WE = 0;
-            jour += 2;
-            moment = -1;
-        } else {
-
-            if (moment == 0) {
-                //afficher fond appart
-
-                //Calcul aléatoire
-                Random random = new Random();
-
-                if (random.nextInt(100) < 30) {
-                    int choixdeevent = random.nextInt(2);
-                    ModifierTexteEvenementRandom(choixdeevent, moment);
-                    RoD = true;
-                    momentCourant = 0;
-                    EventCourant = choixdeevent;
-                } else {
-                    ModifierTexteEvenementDaily(0, moment);
-                    RoD = false;
-                    momentCourant = 0;
-                    EventCourant = 0;
-                }
-            }
-
-            //Fin moment 0
-            // jour modulo 5 = 0
-            //Fin matin
-            if (moment == 1) {
-                //afficher fond appart
-
-                //Calcul aléatoire
-                Random random = new Random();
-
-                if (random.nextInt(100) < 30) {
-                    int choixdeevent = random.nextInt(2);
-
-                    ModifierTexteEvenementRandom(choixdeevent, moment);
-                    RoD = true;
-                    momentCourant = 1;
-                    EventCourant = choixdeevent;
-                } else {
-                    ModifierTexteEvenementDaily(0, moment);
-                    RoD = false;
-                    momentCourant = 1;
-                    EventCourant = 0;
-
-                }
-            }
-
-            if (moment == 2) {
-                //afficher fond appart
-
-                //Calcul aléatoire
-                Random random = new Random();
-
-                if (random.nextInt(100) < 30) {
-                    int choixdeevent = random.nextInt(3);
-
-                    ModifierTexteEvenementRandom(choixdeevent, moment);
-                    RoD = true;
-                    momentCourant = 2;
-                    EventCourant = choixdeevent;
-                } else {
-                    ModifierTexteEvenementDaily(0, moment);
-                    RoD = false;
-                    momentCourant = 2;
-                    EventCourant = 0;
-                }
-            }
-            if (moment == 3) {
-                //afficher fond appart
-
-                //Calcul aléatoire
-                Random random = new Random();
-
-                if (random.nextInt(100) < 30) {
-                    int choixdeevent = random.nextInt(2);
-                    if (choixdeevent == 0) {
-                        ModifierTexteEvenementRandom(choixdeevent, moment);
-                        RoD = true;
-                        momentCourant = 3;
-                        EventCourant = choixdeevent;
-                    }
-
-                } else {
-                    ModifierTexteEvenementDaily(0, moment);
-                    RoD = false;
-                    momentCourant = 3;
-                    EventCourant = 0;
-                }
-            }
-        }
-
-        moment++;
-
-        if (moment == 4) {
-            moment = 0;
-            jour++;
-            WE++;
-        }
-
-    }
-
-    
-    
+    //METHODE Changement des images d'ambiance --------------------------------------------------------------------------------------
+    //Cette méthode permet l'affichage des fonds d'écran et personnage associé à un évènement
     public void AjouterImages(boolean DR, int momentjournée, int eventcourant) {
+
+        //Pour nos boucles switch, on crée ces deux variables qui nous accompagnerons
         String NomPersonnage = null;
         String FondAssocie = null;
 
+        //On cherche à savoir quel évènement est courant (daily ou random)
         if (DR == false) {
+            //En fonction du moment de la journée, on récupère le personnage associé et le fond
             switch (momentjournée) {
                 case 0:
 
@@ -208,13 +107,14 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                     NomPersonnage = listeEvent.recupererEventSoir(eventcourant).LireNomPersonnageDaily();
                     FondAssocie = listeEvent.recupererEventSoir(eventcourant).LireFondAssocieDaily();
                     break;
-                
-                    case 4:
+
+                case 4:
                     NomPersonnage = listeEvent.recupererWeekend(eventcourant).LireNomPersonnageDaily();
                     FondAssocie = listeEvent.recupererWeekend(eventcourant).LireFondAssocieDaily();
                     break;
 
             }
+            //Cas d'un évènement Random, même principe 
         } else if (DR == true) {
             switch (momentjournée) {
                 case 0:
@@ -241,6 +141,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             }
         }
 
+        //Une fois les informations récupérée, on mets les images en place en fonction des noms récupéré
         switch (NomPersonnage) {
             case "Antoine":
                 Personnage.setIcon(img_Antoine);
@@ -272,6 +173,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
             default:
         }
+        //De même pour les fonds, en dissociant les cas de daily et random car on ne veut pas créer de décalage des fonds d'écran
         if (DR == false) {
 
             switch (FondAssocie) {
@@ -326,39 +228,53 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     }
 
+    //METHODE d'implémentation des valeurs des choix dans les jauges --------------------------------------------------------------------------------------
+    //Cette méthode permet d'affecter les nouvelles valeurs aux jauges
     public void AjouterValeurJauges(int jaugevie, int jaugesociabilite, int jaugeeducation) {
+
+        //On fait appelle à la méthode dans jauge qui incrémente les valeurs
         jaugeSante.affecterValeur(jaugevie);
         jaugeSociabilite.affecterValeur(jaugesociabilite);
         jaugeEducation.affecterValeur(jaugeeducation);
 
     }
 
+    //METHODE d'afffichage des valeurs des jauges --------------------------------------------------------------------------------------
     public void ModifierAffichageJauge() {
+        //On met simplement à jour la valeur des jauges pour que le joueur connaisse les valeurs
         JaugeEducationValeur.setText(jaugeEducation.LireValeur() + "/100");
         JaugeSanteValeur.setText(jaugeSante.LireValeur() + "/100");
         JaugeSociabiliteValeur.setText(jaugeSociabilite.LireValeur() + "/100");
     }
 
+    //METHODE d'afffichage des descriptions d'un évènement DAILY --------------------------------------------------------------------------------------
     public void ModifierTexteEvenementDaily(int numeroEvenement, int moment) {
+
+        //En fonction du moment de la journée et du numéro de l'évènement, on cherche le bon évènement dans les listes et on effectue l'affichage
         switch (moment) {
             case 0:
+                //Affichage description
                 DescriptionEvent.setText(listeEvent.recupererEventMatin(numeroEvenement).LireDescriptionDaily());
+                //affichage titre
                 NomEvent.setText(listeEvent.recupererEventMatin(numeroEvenement).LireNomDaily());
+                //Affichage des choix
                 Choix1.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(0));
                 Choix2.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(1));
                 Choix3.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(2));
 
+                //On vérifie s'il y a un quatrième choix ou non
                 if (listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(3) == "null") {
-
+                    //Si non, on désactive le bouton du choix pour que le joueur ne puisse pas cliquer dessus, et on affiche rien
                     Choix4.setText("");
                     Choix4.setEnabled(false);
                 } else {
+                    //Sinon, on affiche le choix et on laisse le bouton actif
                     Choix4.setText(listeEvent.recupererEventMatin(numeroEvenement).LireTableauDePhraseDaily(3));
                     Choix4.setEnabled(true);
                 }
 
                 break;
-
+            //ON reproduit cela pour chaque moment de la journée
             case 1:
                 DescriptionEvent.setText(listeEvent.recupererEventMidi(numeroEvenement).LireDescriptionDaily());
                 NomEvent.setText(listeEvent.recupererEventMidi(numeroEvenement).LireNomDaily());
@@ -410,6 +326,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 }
 
                 break;
+
+            //On a le cas des week-end à ne pas oublier
             case 4:
                 DescriptionEvent.setText(listeEvent.recupererWeekend(numeroEvenement).LireDescriptionDaily());
                 NomEvent.setText(listeEvent.recupererWeekend(numeroEvenement).LireNomDaily());
@@ -432,7 +350,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     }
 
+    //METHODE d'afffichage des descriptions d'un évènement RANDOM --------------------------------------------------------------------------------------
     public void ModifierTexteEvenementRandom(int numeroEvenement, int moment) {
+
+        //Cette méthode est exactement la même que la précédente, mais pour les évènements random. 
         switch (moment) {
             case 0:
                 DescriptionEvent.setText(listeEvent.recupererEventMatinRandom(numeroEvenement).lireDescriptionRandom());
@@ -508,16 +429,25 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     }
 
+    //METHODE de récupération des valeurs à incrémenter pour les jauges --------------------------------------------------------------------------------------
+    //Cette méthode vise à récupérer les valeurs des choix du joueur par jauge pour pouvoir ensuite les incrémenter avec la méthode AjouterValeurJauges
     public void affectationvaleurjauge(boolean DR, int momentjournée, int eventcourant) {
+
+        //On crée les trois int qui récupèrerons les valeurs
         int jaugevie;
         int jaugesociabilite;
         int jaugeeducation;
+
+        //ON vérifie si l'évènement est Daily ou Random
         if (DR == false) {
+            //En fonction du moment de la journée, on va chercher les bonnes valeurs dans la bonne liste
+
             switch (momentjournée) {
                 case 0:
                     jaugevie = listeEvent.recupererEventMatin(eventcourant).LireTableauDeChoixDaily(0, choix);
                     jaugesociabilite = listeEvent.recupererEventMatin(eventcourant).LireTableauDeChoixDaily(1, choix);
                     jaugeeducation = listeEvent.recupererEventMatin(eventcourant).LireTableauDeChoixDaily(2, choix);
+                    //On ajoute les valeurs aux jauges
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
                 case 1:
@@ -545,7 +475,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                     AjouterValeurJauges(jaugevie, jaugesociabilite, jaugeeducation);
                     break;
             }
-        } else {
+        } else { //Si l'évènement est random, analogue
             switch (momentjournée) {
                 case 0:
                     jaugevie = listeEvent.recupererEventMatinRandom(eventcourant).lireTableauDeChoixRandom(0, choix);
@@ -581,7 +511,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         }
     }
 
+    //METHODE de vérification de la défaite --------------------------------------------------------------------------------------
     public void verifierdefaite() {
+
+        //Si une des jauges est arrivée à 0, on enlève tous les panels et on affiche le panel du message quand on perd
         if (jaugeSante.LireValeur() <= 0 || jaugeSociabilite.LireValeur() <= 0 || jaugeEducation.LireValeur() <= 0) {
             JaugeEducationValeur.setVisible(false);
             JaugeSociabiliteValeur.setVisible(false);
@@ -597,7 +530,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         }
     }
 
+    //METHODE de vérification de la victoire --------------------------------------------------------------------------------------
     public void verifiervictoire() {
+
+//Si le joueur a survécu jusqu'au jour 152, on enlève tous les panels et on affiche le panel du message quand on gagne
         if (jour == 152) {
             JaugeEducationValeur.setVisible(false);
             JaugeSociabiliteValeur.setVisible(false);
@@ -612,6 +548,141 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             Victoire.setVisible(true);
         }
     }
+
+// -------------------- METHODE DEROULEMENT DU JEU -------------------------
+    //METHODE JOUER --------------------------------------------------------------------------------------------------------
+    //Elle permet de compter les moments de la journée, les jours, les week-ends, affiche les descriptions de l'évènement 
+    //et calcul la probabilité d'afficher un évènement random
+    public void Jouer() {
+
+        //Tout d'abord, on vérifie si c'est le Week end ou non grâce à l'attribut qui compte cela
+        if (WE == 5) {
+            moment = 4;//Si oui, on dit bien que le moment de la journée est égale à 4 pour que les méthodes appelle la bonne liste d'évènement
+
+            //On affiche la description de l'évènement du week end
+            ModifierTexteEvenementDaily(0, moment);
+
+            //Ces lignes permettent de prendre en mémoire l'évènement courant (numéro, Daily ou Random, moment de la journée)
+            RoD = false;
+            momentCourant = 4;
+            EventCourant = 0;
+
+            //Puis on remet le compteur de Week end à 0
+            WE = 0;
+            jour += 2; //On ajoute 2 jours car ce sont les deux jours du week-end. 
+            moment = -1; //Moment va prendre +1 à la fin de la méthode jouer, donc on veut que moment devienne 0 pour commencer au matin du lundi. 
+
+            //Si ce n'est pas le week end, on vérifie quel moment de la journée nous sommes en train de vivre
+        } else {
+
+            if (moment == 0) {
+                // Ici on affiche le compteur de jour tous les matins
+                Jour.setText("Jour " + jour);
+
+                //On calcul un nombre aléatoirement pour savoir si oui ou non, un évènement Random aura lieu
+                Random random = new Random();
+
+                if (random.nextInt(100) < 30) { //30% de chance, si un évènement se passe, il remplace l'évènement Daily
+
+                    int choixdeevent = random.nextInt(2); //On enregistre le numéro de l'évènement courant
+
+                    //Comme d'habitude, on affiche l'évènement et on enregristre l'évènement avec les attributs
+                    ModifierTexteEvenementRandom(choixdeevent, moment);
+                    RoD = true; //true quand c'est un évènement random, false sinon
+                    momentCourant = 0;
+                    EventCourant = choixdeevent;
+
+                } else { //Sinon, on fait l'évènement Daily de la même façon
+                    ModifierTexteEvenementDaily(0, moment);
+                    RoD = false;
+                    momentCourant = 0;
+                    EventCourant = 0;
+                }
+            }
+
+            //Fin matin
+            //On recommence avec tous les moments de la journée -------------------------------------------------------------------
+            if (moment == 1) {
+                //afficher fond appart
+
+                //Calcul aléatoire
+                Random random = new Random();
+
+                if (random.nextInt(100) < 30) {
+                    int choixdeevent = random.nextInt(2);
+
+                    ModifierTexteEvenementRandom(choixdeevent, moment);
+                    RoD = true;
+                    momentCourant = 1;
+                    EventCourant = choixdeevent;
+                } else {
+                    ModifierTexteEvenementDaily(0, moment);
+                    RoD = false;
+                    momentCourant = 1;
+                    EventCourant = 0;
+
+                }
+            }
+
+            //Fin midi
+            if (moment == 2) {
+                //afficher fond appart
+
+                //Calcul aléatoire
+                Random random = new Random();
+
+                if (random.nextInt(100) < 30) {
+                    int choixdeevent = random.nextInt(3);
+
+                    ModifierTexteEvenementRandom(choixdeevent, moment);
+                    RoD = true;
+                    momentCourant = 2;
+                    EventCourant = choixdeevent;
+                } else {
+                    ModifierTexteEvenementDaily(0, moment);
+                    RoD = false;
+                    momentCourant = 2;
+                    EventCourant = 0;
+                }
+            }
+
+            //Fin après-midi
+            if (moment == 3) {
+                //afficher fond appart
+
+                //Calcul aléatoire
+                Random random = new Random();
+
+                if (random.nextInt(100) < 30) {
+                    int choixdeevent = random.nextInt(2);
+                    if (choixdeevent == 0) {
+                        ModifierTexteEvenementRandom(choixdeevent, moment);
+                        RoD = true;
+                        momentCourant = 3;
+                        EventCourant = choixdeevent;
+                    }
+
+                } else {
+                    ModifierTexteEvenementDaily(0, moment);
+                    RoD = false;
+                    momentCourant = 3;
+                    EventCourant = 0;
+                }
+            }
+        }
+
+        //Enfin, on incrémente moment, pour qu'on puisse passer au prochain moment de la journée une fois un évènement terminé
+        moment++;
+
+        //Lorsqu'on arrive à la fin de la journée (soir), on prend un jour supplémentaire, et donc le week end s'incrémente aussi, et on repart à 0 pour le prochain matin
+        if (moment == 4) {
+            moment = 0;
+            jour++;
+            WE++;
+        }
+
+    }
+    //FIN DES METHODES -----------------------------------------------------------------------------------------
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -666,6 +737,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         Choix2 = new javax.swing.JButton();
         Choix3 = new javax.swing.JButton();
         Choix4 = new javax.swing.JButton();
+        Jour = new javax.swing.JLabel();
         ImageDeFond = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1095,6 +1167,9 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         getContentPane().add(Evenement, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 1190, 560));
 
+        Jour.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        getContentPane().add(Jour, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 940, -1, -1));
+
         ImageDeFond.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Campus.jpg"))); // NOI18N
         getContentPane().add(ImageDeFond, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1800, 1000));
 
@@ -1102,20 +1177,29 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Choix1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix1ActionPerformed
-        // TODO add your handling code here:
+        // Bouton choix 1
+        //Déroulement du jeu
+        //L'évènement a été affiché lors de l'action précédente, le joueur fait donc son choix
+        //On retient le choix effectué
         choix = 0;
+        //On affecte la valeur de son choix aux jauges
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
-
+        //On vérifie la victoire et la défaite
         verifierdefaite();
         verifiervictoire();
+        //Sinon, on actualise les valeurs de sa jauge
         ModifierAffichageJauge();
 
+        //On lance l'affichage du prochain évènement
         Jouer();
+        //On oublie pas de mettre les images qui vont avec
         AjouterImages(RoD, momentCourant, EventCourant);
+        //Puis le joueur refera un choix, et donc un bouton repassera toutes ces méthodes. 
+
     }//GEN-LAST:event_Choix1ActionPerformed
 
     private void Choix2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix2ActionPerformed
-        // TODO add your handling code here:
+        // Même principe que le premier bouton
         choix = 1;
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
 
@@ -1125,10 +1209,11 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         Jouer();
         AjouterImages(RoD, momentCourant, EventCourant);
+
     }//GEN-LAST:event_Choix2ActionPerformed
 
     private void Choix3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix3ActionPerformed
-        // TODO add your handling code here:
+        // Même principe que le premier bouton
         choix = 2;
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
 
@@ -1141,13 +1226,13 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     }//GEN-LAST:event_Choix3ActionPerformed
 
     private void Choix4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Choix4ActionPerformed
-        // TODO add your handling code here:
+        // Même principe que le premier bouton
         choix = 3;
         affectationvaleurjauge(RoD, momentCourant, EventCourant);
 
         verifierdefaite();
         verifiervictoire();
-        
+
         ModifierAffichageJauge();
 
         Jouer();
@@ -1155,7 +1240,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     }//GEN-LAST:event_Choix4ActionPerformed
 
     private void bouton_demarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_demarrerActionPerformed
-        // Affichage d'ambiance   
+        //Lorsque le joueur a lu les règles, il est prêt et on affiche le panel des difficultés 
 
         Regles.setVisible(false);
         debut.setVisible(true);
@@ -1164,8 +1249,9 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     }//GEN-LAST:event_bouton_demarrerActionPerformed
 
     private void diff_facileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_facileActionPerformed
-        // TODO add your handling code here:
+        // Le joueur a choisi sa difficulté. Ici, facile.
 
+//On affiche tous les panels du jeu
         debut.setVisible(false);
         JaugeEducationValeur.setVisible(true);
         JaugeSociabiliteValeur.setVisible(true);
@@ -1177,23 +1263,32 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         jLabel15.setVisible(true);
         jLabel16.setVisible(true);
 
+        //On choisi le multiplicateur en fonction de la difficulté choisie (ici, 1 car c'est la difficulté "facile"
         float multiplicateur = (float) 1;
+        //On crée les trois jauges et leur valeur de départ en fonction de la difficulté grâce aux constructeurs
         jaugeSante = new Jauge(70, "Sante", multiplicateur);
         jaugeSociabilite = new Jauge(70, "Sociabilite", multiplicateur);
         jaugeEducation = new Jauge(70, "Education", multiplicateur);
+
+        //on affiche la valeur des jauges
         ModifierAffichageJauge();
 
-        //Daily
+        //Pour commencer le jeu, on affiche le premier évènement Daily sans mode aléatoire, pour que le joueur comprenne le jeu. 
         ModifierTexteEvenementDaily(0, moment);
+        //On démarre le compteur des jours
+        Jour.setText("Jour " + jour);
+        //on prend en mémoire l'évènement
         RoD = false;
         moment = 1;
         EventCourant = 0;
         momentCourant = 0;
+        //on affiche les images associées
         AjouterImages(RoD, momentCourant, EventCourant);
+        //on attend que le joueur face un choix en rapport avec l'évènement, puis ce sont les boutons qui prennent le relais. 
     }//GEN-LAST:event_diff_facileActionPerformed
 
     private void diff_moyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_moyenActionPerformed
-        // TODO add your handling code here:
+        //Même principe pour une autre difficulté
 
         debut.setVisible(false);
         JaugeEducationValeur.setVisible(true);
@@ -1213,6 +1308,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         ModifierAffichageJauge();
         //Daily
         ModifierTexteEvenementDaily(0, moment);
+        Jour.setText("Jour " + jour);
         RoD = false;
         moment = 1;
         EventCourant = 0;
@@ -1221,8 +1317,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     }//GEN-LAST:event_diff_moyenActionPerformed
 
     private void diff_moyen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diff_moyen1ActionPerformed
-        // TODO add your handling code here:
-
+        //Même principe pour une autre difficulté
         debut.setVisible(false);
         JaugeEducationValeur.setVisible(true);
         JaugeSociabiliteValeur.setVisible(true);
@@ -1242,6 +1337,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         //Daily
         ModifierTexteEvenementDaily(0, moment);
+        Jour.setText("Jour " + jour);
         RoD = false;
         moment = 1;
         EventCourant = 0;
@@ -1302,6 +1398,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel JaugeSanteValeur;
     private javax.swing.JLabel JaugeSociabiliteValeur;
     private javax.swing.JLabel Jauges;
+    private javax.swing.JLabel Jour;
     private javax.swing.JLabel NomEvent;
     private javax.swing.JLabel Personnage;
     private javax.swing.JPanel Regles;
